@@ -20,7 +20,7 @@ var Book = function(oArgs) {
   this.aDate = oArgs.date
 };
 
-var gBookOnegitignore_global = new Book(oArgs = {title: "It", author: "Stephen King", numpages: 390, pubDate: "03/12/1987"})
+var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numpages: 390, pubDate: "03/12/1987"})
 
 
 // same as var window = x;  g is for global
