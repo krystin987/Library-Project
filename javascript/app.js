@@ -37,6 +37,15 @@ Library.prototype.removeBookByAuthor = function (name) {
   return true;
 };
 
+Library.prototype.getRandomBook = function () {
+  for (var k in gLib.myBookArray) {
+    if (gLib.myBookArray.indexOf) {
+      return gLib.myBookArray[Math.floor(Math.random() * gLib.myBookArray.length)]
+    }
+  }
+    return null;
+}
+
 var Book = function(oArgs) {
   this.title = oArgs.title;
   this.author = oArgs.author;
