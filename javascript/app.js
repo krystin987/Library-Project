@@ -66,10 +66,9 @@ Library.prototype.addBooks = function(books) {
 	for (var i in books) {
 		if (books[i] === gLib.myBookArray[i]) {
 			return 0;
-		} else {
-			count++;
-			gLib.addBook(books[i]);
 		}
+		count++;
+		gLib.addBook(books[i]);
 	}
 	return count;
 };
