@@ -42,6 +42,16 @@ Library.prototype.getRandomBook = function () {
 	return null;
 };
 
+Library.prototype.getBookByTitle = function (title) {
+	var results = [];;
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
+			results.push(gLib.myBookArray[i]);
+		}
+	}
+	return results;
+};
+
 
 var Book = function(oArgs) {
 	this.title = oArgs.title;
@@ -50,9 +60,10 @@ var Book = function(oArgs) {
 	this.aDate = oArgs.date;
 };
 
+
+// hardcoded variables exist for testing purposes
 var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numpages: 390, pubDate: "03/12/1987"});
 var gBookTwo = new Book(oArgs = {title: "Slaughterhouse Five", author: "Kurt Vonnegut", numpages: 400, pubDate: "03/01/1969"});
 
-window.gLib = new Library();
 
-// function accept an array, iterate through that array.length, then call the other method
+window.gLib = new Library();
