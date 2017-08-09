@@ -61,9 +61,9 @@ var Book = function(oArgs) {
 };
 
 
+
 // hardcoded variables exist for testing purposes
 var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numpages: 390, pubDate: "03/12/1987"});
 var gBookTwo = new Book(oArgs = {title: "Slaughterhouse Five", author: "Kurt Vonnegut", numpages: 400, pubDate: "03/01/1969"});
-
 
 window.gLib = new Library();
