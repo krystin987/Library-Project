@@ -1,8 +1,7 @@
 var Library = function () {};
 
-Library.prototype.myBookArray = []; // = new Array();
+Library.prototype.myBookArray = [];
 
-// add books to the library array
 Library.prototype.addBook = function(book){
 	for (var i = 0; i < gLib.myBookArray.length; i++) {
 		if (gLib.myBookArray[i].title === book.title) {
@@ -42,7 +41,7 @@ Library.prototype.getRandomBook = function () {
 	return null;
 };
 
-Library.prototype.getBookByTitle = function (title) {
+Library.prototype.getBooksByTitle = function (title) {
 	var results = [];;
 	for (var i in gLib.myBookArray) {
 		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
@@ -52,6 +51,15 @@ Library.prototype.getBookByTitle = function (title) {
 	return results;
 };
 
+Library.prototype.getBooksByAuthor = function (authorName) {
+	var results = [];;
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].author.toLowerCase().includes(authorName)) {
+			results.push(gLib.myBookArray[i]);
+		}
+	}
+	return results;
+};
 
 var Book = function(oArgs) {
 	this.title = oArgs.title;
