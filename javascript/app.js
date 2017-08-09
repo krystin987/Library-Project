@@ -42,29 +42,6 @@ Library.prototype.getRandomBook = function () {
 	return null;
 };
 
-// Library.prototype.getBookByTitle = function (title) {
-// 	var temp = [];
-// 	for (var k in gLib.myBookArray)	{
-// 		//need regex for partial matches
-// 		if (gLib.myBookArray[k].title === title) {
-// 			temp.push(k);
-// 		}
-// 		return temp;
-// 	}
-// 	return [];
-// };
-//
-// Library.prototype.getBookByAuthor = function (authorName) {
-// 	var temp = [];
-// 	for (var k in gLib.myBookArray)	{
-// 		//need regex for partial matches
-// 		if (gLib.myBookArray[k].author === authorName) {
-// 			temp.push(k);
-// 		}
-// 		return temp;
-// 	}
-// 	return [];
-// };
 
 var Book = function(oArgs) {
 	this.title = oArgs.title;
