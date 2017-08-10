@@ -1,4 +1,7 @@
-var Library = function () { this.myBookArray = new Array;};
+var Library = function (instanceKey) {
+	this.myBookArray = new Array;
+	this.instanceKey = instanceKey;
+};
 
 Library.prototype.addBook = function(book){
 	for (var i in book) {
@@ -99,6 +102,17 @@ Library.prototype.getAuthors = function() {
 	return noDupes;
 };
 
+Library.prototype.setStorage = function (library, instanceKey) {
+	localStorage.setItem(instanceKey, JSON.stringify(library.myBookArray));
+};
+
+Library.prototype.getStorage = function (instanceKey) {
+	 var lib = localStorage.getItem(instanceKey);
+	 lib = JSON.parse(lib);
+	 console.log(lib);
+};
+
+
 var Book = function(oArgs) {
 	this.title = oArgs.title;
 	this.author = oArgs.author;
@@ -106,4 +120,9 @@ var Book = function(oArgs) {
 	this.pubDate = new Date(oArgs.pubDate);
 };
 
-window.gLib = new Library();
+// (oArgs.pubDate[0], oArgs.pubDate[1]);
+// (oArgs.pubDate);
+
+window.gLib = new Library("All");
+window.gLibDenver = new Library("Denver");
+window.gLibBoulder = new Library("Boulder");
