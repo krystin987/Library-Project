@@ -40,4 +40,10 @@ var knuthObj = [
 		numPages: 2000,
 		pubDate: "1/1/1968"
 	},
+	{
+		title: "Concrete Mathematics: A Foundation for Computer Science",
+		author: "Donald Knuth",
+		numPages: 657,
+		pubDate: "1/1/1994"
+	}
 ];

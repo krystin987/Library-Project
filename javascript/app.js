@@ -64,10 +64,9 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 Library.prototype.addBooks = function(books) {
 	count = 0;
 	for (var i in books) {
-
 		if (Array.isArray(books) && gLib.myBookArray[i] !== books[i]) {
+			count++;
 		 gLib.addBook(books[i]);
-		 count++;
 	 	}
 	 }
 	 return count;
@@ -94,9 +93,7 @@ var Book = function(oArgs) {
 	this.title = oArgs.title;
 	this.author = oArgs.author;
 	this.numPages = oArgs.numPages;
-	this.aDate = oArgs.date;
+	this.pubDate = new Date(oArgs.pubDate);
 };
-
-
 
 window.gLib = new Library();
