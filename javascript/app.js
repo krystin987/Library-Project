@@ -9,19 +9,19 @@ Library.prototype.addBook = function(book){
 			return false;
 		}
 	}
-	for (var i in gLib.myBookArray) {
+	for (var i in this.myBookArray) {
 		if (gLib.myBookArray[i].title === book.title) {
 			return false;
 		}
 	}
-	gLib.myBookArray.push(book);
+	this.myBookArray.push(book);
 	return true;
 };
 
 Library.prototype.removeBookByTitle = function(title) {
-	for (var i in gLib.myBookArray) {
-		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
-			gLib.myBookArray.splice(i, 1);
+	for (var i in this.myBookArray) {
+		if (this.myBookArray[i].title.toLowerCase().includes(title)) {
+			this.myBookArray.splice(i, 1);
 			return true;
 		}
 	}
@@ -29,9 +29,9 @@ Library.prototype.removeBookByTitle = function(title) {
 };
 
 Library.prototype.removeBookByAuthor = function(authorName) {
-	for (var i in gLib.myBookArray) {
-		if (gLib.myBookArray[i].author.toLowerCase().includes(authorName)) {
-			var noDupes = gLib.myBookArray.filter( function( item, index, inputArray ) {
+	for (var i in this.myBookArray) {
+		if (this.myBookArray[i].author.toLowerCase().includes(authorName)) {
+			var noDupes = this.myBookArray.filter( function( item, index, inputArray ) {
 				inputArray.splice(i, 1);
 			});
 			return true;
@@ -41,9 +41,9 @@ Library.prototype.removeBookByAuthor = function(authorName) {
 };
 
 Library.prototype.getRandomBook = function() {
-	for (var k in gLib.myBookArray) {
-		if (gLib.myBookArray.indexOf) {
-			return gLib.myBookArray[Math.floor(Math.random() * gLib.myBookArray.length)];
+	for (var k in this.myBookArray) {
+		if (this.myBookArray.indexOf) {
+			return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
 		}
 	}
 	return null;
@@ -51,19 +51,20 @@ Library.prototype.getRandomBook = function() {
 
 Library.prototype.getBooksByTitle = function(title) {
 	var results = [];;
-	for (var i in gLib.myBookArray) {
-		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
-			results.push(gLib.myBookArray[i]);
+	for (var i in this.myBookArray) {
+		if (this.myBookArray[i].title.toLowerCase().includes(title)) {
+			results.push(this.myBookArray[i]);
 		}
 	}
 	return results;
 };
 
+// make arguments toString???
 Library.prototype.getBooksByAuthor = function(authorName) {
 	var results = [];;
-	for (var i in gLib.myBookArray) {
-		if (gLib.myBookArray[i].author.toLowerCase().includes(authorName)) {
-			results.push(gLib.myBookArray[i]);
+	for (var i in this.myBookArray) {
+		if (this.myBookArray[i].author.toLowerCase().includes(authorName)) {
+			results.push(this.myBookArray[i]);
 		}
 	}
 	return results;
@@ -75,7 +76,7 @@ Library.prototype.addBooks = function(books) {
 		if(!Array.isArray(books)) {
 			return false;
 		}
-		if (gLib.addBook(books[i])) {
+		if (this.addBook(books[i])) {
 			count++;
 	 	}
 	 }
@@ -83,9 +84,9 @@ Library.prototype.addBooks = function(books) {
 };
 
 Library.prototype.getRandomAuthorName = function() {
-	for (var i in gLib.myBookArray) {
-		if (gLib.myBookArray.indexOf) {
-			return gLib.myBookArray[Math.floor(Math.random() * gLib.myBookArray.length)].author;
+	for (var i in this.myBookArray) {
+		if (this.myBookArray.indexOf) {
+			return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)].author;
 		}
 	}
 	return null;
@@ -93,8 +94,8 @@ Library.prototype.getRandomAuthorName = function() {
 
 Library.prototype.getAuthors = function() {
 	var authors = [];
-	for (var i in gLib.myBookArray) {
-		authors.push(gLib.myBookArray[i].author);
+	for (var i in this.myBookArray) {
+		authors.push(this.myBookArray[i].author);
 	}
 	var noDupes = authors.filter( function( item, index, inputArray ) {
 		return inputArray.indexOf(item) == index;
@@ -111,7 +112,6 @@ Library.prototype.getStorage = function (instanceKey) {
 	 lib = JSON.parse(lib);
 	 console.log(lib);
 };
-
 
 var Book = function(oArgs) {
 	this.title = oArgs.title;
