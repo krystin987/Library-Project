@@ -82,6 +82,14 @@ Library.prototype.getRandomAuthorName = function() {
 	return null;
 };
 
+Library.prototype.getAuthors = function() {
+	var authors = [];
+	for(var i in gLib.myBookArray){
+	   authors.push(gLib.myBookArray[i].author);
+	}
+	return authors;
+};
+
 var Book = function(oArgs) {
 	this.title = oArgs.title;
 	this.author = oArgs.author;
