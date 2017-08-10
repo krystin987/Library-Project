@@ -11,9 +11,9 @@ Library.prototype.addBook = function(book){
 };
 
 Library.prototype.removeBookByTitle = function(title) {
-	for (var k in gLib.myBookArray) {
-		if (gLib.myBookArray[k].title.toLowerCase() === title.toLowerCase()) {
-			gLib.myBookArray.splice(k, 1);
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
+			gLib.myBookArray.splice(i, 1);
 			return true;
 		}
 	}
@@ -21,9 +21,11 @@ Library.prototype.removeBookByTitle = function(title) {
 };
 
 Library.prototype.removeBookByAuthor = function(authorName) {
-	for (var k in gLib.myBookArray) {
-		if (gLib.myBookArray[k].author.toLowerCase() === authorName.toLowerCase()) {
-			gLib.myBookArray.splice(k, 1);
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].author.toLowerCase().includes(authorName)) {
+			var noDupes = gLib.myBookArray.filter( function( item, index, inputArray ) {
+				inputArray.splice(i, 1);
+			});
 			return true;
 		}
 	}
