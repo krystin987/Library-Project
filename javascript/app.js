@@ -1,6 +1,11 @@
 var Library = function () { this.myBookArray = new Array;};
 
 Library.prototype.addBook = function(book){
+	for (var i in book) {
+		if (Array.isArray(book)) {
+			return false;
+		}
+	}
 	for (var i in gLib.myBookArray) {
 		if (gLib.myBookArray[i].title === book.title) {
 			return false;
