@@ -80,7 +80,6 @@ var Book = function(oArgs) {
 	this.aDate = oArgs.date;
 };
 
-var wtf = [1, 2, 3, 4, 5, 6];
 // hardcoded variables exist for testing purposes
 var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numPages: 390, pubDate: "03/12/1987"});
 var gBookTwo = new Book(oArgs = {title: "Slaughterhouse Five", author: "Kurt Vonnegut", numPages: 400, pubDate: "03/01/1969"});
@@ -114,6 +113,7 @@ var thompsonObj = [
 		pubDate: "1/1/1979"
 	}
 ];
+
 
 var knuthObj = [
 	{
