@@ -1,9 +1,7 @@
-var Library = function () {};
-
-Library.prototype.myBookArray = [];
+var Library = function () { this.myBookArray = new Array;};
 
 Library.prototype.addBook = function(book){
-	for (var i = 0; i < gLib.myBookArray.length; i++) {
+	for (var i in gLib.myBookArray) {
 		if (gLib.myBookArray[i].title === book.title) {
 			return false;
 		}
@@ -13,9 +11,9 @@ Library.prototype.addBook = function(book){
 };
 
 Library.prototype.removeBookByTitle = function(title) {
-	for (var k in gLib.myBookArray) {
-		if (gLib.myBookArray[k].title.toLowerCase() === title.toLowerCase()) {
-			gLib.myBookArray.splice(k, 1);
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].title.toLowerCase().includes(title)) {
+			gLib.myBookArray.splice(i, 1);
 			return true;
 		}
 	}
@@ -23,9 +21,11 @@ Library.prototype.removeBookByTitle = function(title) {
 };
 
 Library.prototype.removeBookByAuthor = function(authorName) {
-	for (var k in gLib.myBookArray) {
-		if (gLib.myBookArray[k].author.toLowerCase() === authorName.toLowerCase()) {
-			gLib.myBookArray.splice(k, 1);
+	for (var i in gLib.myBookArray) {
+		if (gLib.myBookArray[i].author.toLowerCase().includes(authorName)) {
+			var noDupes = gLib.myBookArray.filter( function( item, index, inputArray ) {
+				inputArray.splice(i, 1);
+			});
 			return true;
 		}
 	}
@@ -64,10 +64,11 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 Library.prototype.addBooks = function(books) {
 	count = 0;
 	for (var i in books) {
-
-		if (Array.isArray(books) && gLib.myBookArray[i] !== books[i]) {
-		 gLib.addBook(books[i]);
-		 count++;
+		if(!Array.isArray(books)) {
+			return false;
+		}
+		if (gLib.addBook(books[i])) {
+			count++;
 	 	}
 	 }
 	 return count;
@@ -84,19 +85,20 @@ Library.prototype.getRandomAuthorName = function() {
 
 Library.prototype.getAuthors = function() {
 	var authors = [];
-	for(var i in gLib.myBookArray){
-	   authors.push(gLib.myBookArray[i].author);
+	for (var i in gLib.myBookArray) {
+		authors.push(gLib.myBookArray[i].author);
 	}
-	return authors;
+	var noDupes = authors.filter( function( item, index, inputArray ) {
+		return inputArray.indexOf(item) == index;
+	});
+	return noDupes;
 };
 
 var Book = function(oArgs) {
 	this.title = oArgs.title;
 	this.author = oArgs.author;
 	this.numPages = oArgs.numPages;
-	this.aDate = oArgs.date;
+	this.pubDate = new Date(oArgs.pubDate);
 };
-
-
 
 window.gLib = new Library();
