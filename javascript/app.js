@@ -1,9 +1,7 @@
-var Library = function () {};
-
-Library.prototype.myBookArray = [];
+var Library = function () { this.myBookArray = new Array;};
 
 Library.prototype.addBook = function(book){
-	for (var i = 0; i < gLib.myBookArray.length; i++) {
+	for (var i in gLib.myBookArray) {
 		if (gLib.myBookArray[i].title === book.title) {
 			return false;
 		}
@@ -64,9 +62,11 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 Library.prototype.addBooks = function(books) {
 	count = 0;
 	for (var i in books) {
-		if (Array.isArray(books) && gLib.myBookArray[i] !== books[i]) {
+		if(!Array.isArray(books)) {
+			return false;
+		}
+		if (gLib.addBook(books[i])) {
 			count++;
-		 gLib.addBook(books[i]);
 	 	}
 	 }
 	 return count;
