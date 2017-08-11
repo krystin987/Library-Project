@@ -103,14 +103,12 @@ Library.prototype.getAuthors = function() {
 	return noDupes;
 };
 
-Library.prototype.setStorage = function (library, instanceKey) {
-	localStorage.setItem(instanceKey, JSON.stringify(library.myBookArray));
+Library.prototype.setStorage = function (instanceKey) {
+	localStorage.setItem(instanceKey, JSON.stringify(this.myBookArray));
 };
 
 Library.prototype.getStorage = function (instanceKey) {
-	 var lib = localStorage.getItem(instanceKey);
-	 lib = JSON.parse(lib);
-	 console.log(lib);
+	 return JSON.parse(localStorage.getItem(this.instanceKey));
 };
 
 var Book = function(oArgs) {
