@@ -10,7 +10,7 @@ Library.prototype.addBook = function(book){
 		}
 	}
 	for (var i in this.myBookArray) {
-		if (gLib.myBookArray[i].title === book.title) {
+		if (this.myBookArray[i].title === book.title) {
 			return false;
 		}
 	}
