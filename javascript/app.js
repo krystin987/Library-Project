@@ -1,4 +1,4 @@
-var Library = function (instanceKey) {
+var Library = function(instanceKey) {
 	this.myBookArray = new Array;
 	this.instanceKey = instanceKey;
 };
@@ -103,12 +103,22 @@ Library.prototype.getAuthors = function() {
 	return noDupes;
 };
 
-Library.prototype.setStorage = function (instanceKey) {
+Library.prototype.setStorage = function(instanceKey) {
 	localStorage.setItem(instanceKey, JSON.stringify(this.myBookArray));
 };
 
-Library.prototype.getStorage = function (instanceKey) {
+Library.prototype.getStorage = function(instanceKey) {
 	 return JSON.parse(localStorage.getItem(this.instanceKey));
+};
+
+Library.prototype.advancedSearch = function(property) {
+	var results = [];
+	for (var i in this.myBookArray) {
+		if(this.myBookArray[i].property === this.property) {
+			results.push(this.myBookArray[i]);
+		};
+	}
+	return results;
 };
 
 var Book = function(oArgs) {
