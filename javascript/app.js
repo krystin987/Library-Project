@@ -31,7 +31,7 @@ Library.prototype.removeBookByTitle = function(title) {
 Library.prototype.removeBookByAuthor = function(authorName) {
 	for (var i in this.myBookArray) {
 		if (this.myBookArray[i].author.toLowerCase().includes(authorName)) {
-			var noDupes = this.myBookArray.filter( function( item, index, inputArray ) {
+			this.myBookArray.filter( function( item, index, inputArray ) {
 				inputArray.splice(i, 1);
 			});
 			return true;
@@ -117,9 +117,6 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
-
-// (oArgs.pubDate[0], oArgs.pubDate[1]);
-// (oArgs.pubDate);
 
 window.gLib = new Library("All");
 window.gLibDenver = new Library("Denver");
