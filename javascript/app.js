@@ -63,7 +63,7 @@ Library.prototype.getBooksByTitle = function(title) {
 Library.prototype.getBooksByAuthor = function(authorName) {
 	var results = [];;
 	for (var i in this.myBookArray) {
-		if (this.myBookArray[i].author.toLowerCase().includes(authorName)) {
+		if (this.myBookArray[i].author.toLowerCase().includes(authorName).toLowerCase()) {
 			results.push(this.myBookArray[i]);
 		}
 	}
