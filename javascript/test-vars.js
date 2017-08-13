@@ -20,7 +20,6 @@ var thompsonObj = [
 	})
 ];
 
-
 var knuthObj = [
 	new Book(oArgs =
 	{
@@ -35,13 +34,6 @@ var knuthObj = [
 		author: "Donald Knuth",
 		numPages: 657,
 		pubDate: "1/1/1994"
-	}),
-	new Book(oArgs =
-	{
-		title: "TESTERTESTER Concrete Mathematics: A Foundation for Computer Science",
-		author: "Donald Knuth",
-		numPages: 657,
-		pubDate: "1/1/1994"
 	})
 ];
 
@@ -52,3 +44,7 @@ Library.prototype.addAllBooksTest = function() {
 	gLibDenver.addBooks(thompsonObj);
 	console.log(gLibDenver.myBookArray);
 };
+
+// newBook = function(arg) {
+// 	return arg instanceof Book ? arg : new Book(arg);
+// };

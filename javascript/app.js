@@ -112,12 +112,16 @@ Library.prototype.getStorage = function(instanceKey) {
 	 return JSON.parse(localStorage.getItem(this.instanceKey));
 };
 
-Library.prototype.advancedSearchByAny = function(searchString) {
-	for (var i in Object.values(this.myBookArray)) {
-		if (Object.values(this.myBookArray[i]).includes(searchString)) {
-			console.log(this.myBookArray[i]);
-		}
+Library.prototype.advancedSearch = function(...pairs) {
+// pairs is an array of key value pairs - copy of books list
+	var results = Array.from(this.myBookArray);
+	for ([key, value] of pairs) {
+		results = results.filter(function(book) {
+			return book[key].match(new RegExp(value, "i"));
+		});
 	}
+	// should return an array of matches (possibly empty)
+	return results;
 };
 
 var Book = function(oArgs) {
@@ -126,10 +130,6 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
-
-// newBook = function(arg) {
-// 	return arg instanceof Book ? arg : new Book(arg);
-// };
 
 window.gLib = new Library("All");
 window.gLibDenver = new Library("Denver");
