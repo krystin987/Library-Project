@@ -75,7 +75,6 @@ Library.prototype.addBooks = function(books) {
 	if(!Array.isArray(books)) {
 		return false;
 	}
-
 	for (var i in books) {
 		if (this.addBook(books[i])) {
 			count++;
@@ -85,23 +84,12 @@ Library.prototype.addBooks = function(books) {
 };
 
 Library.prototype.getRandomAuthorName = function() {
-	for (var i in this.myBookArray) {
-		if (this.myBookArray.indexOf) {
-			return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)].author;
-		}
-	}
-	return null;
+	return this.getRandomBook().author;
 };
 
 Library.prototype.getAuthors = function() {
-	var authors = [];
-	for (var i in this.myBookArray) {
-		authors.push(this.myBookArray[i].author);
-	}
-	var noDupes = authors.filter( function( item, index, inputArray ) {
-		return inputArray.indexOf(item) == index;
-	});
-	return noDupes;
+	return this.myBookArray.reduce(function(result, book) {
+		return result.add(book.author);}, new Set());
 };
 
 Library.prototype.setStorage = function(instanceKey) {
