@@ -101,14 +101,12 @@ Library.prototype.getStorage = function(instanceKey) {
 };
 
 Library.prototype.advancedSearch = function(...pairs) {
-// pairs is an array of key value pairs - copy of books list
 	var results = Array.from(this.myBookArray);
 	for ([key, value] of pairs) {
 		results = results.filter(function(book) {
 			return book[key].match(new RegExp(value, "i"));
 		});
 	}
-	// should return an array of matches (possibly empty)
 	return results;
 };
 
