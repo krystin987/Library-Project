@@ -29,24 +29,24 @@ Library.prototype.removeBookByTitle = function(title) {
 };
 
 Library.prototype.removeBookByAuthor = function(authorName) {
-	for (var i in this.myBookArray) {
-		if (this.myBookArray[i].author.toLowerCase().includes(authorName)) {
-			this.myBookArray.filter( function( item, index, inputArray ) {
-				inputArray.splice(i, 1);
-			});
-			return true;
-		}
+	// filter it
+	var newBookArray = this.myBookArray.filter(function(book) {
+		return !book.author.toLowerCase().includes(authorName);
+	});
+	// replace it
+	if (this.myBookArray.length > newBookArray.length) {
+		this.myBookArray = newBookArray;
+		return true;
 	}
+	// return true if replaced, false otherwise
 	return false;
 };
 
 Library.prototype.getRandomBook = function() {
-	for (var k in this.myBookArray) {
-		if (this.myBookArray.indexOf) {
-			return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
-		}
+	if (!this.myBookArray.length) {
+		return null;
 	}
-	return null;
+	return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
 };
 
 Library.prototype.getBooksByTitle = function(title) {
@@ -71,16 +71,17 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 };
 
 Library.prototype.addBooks = function(books) {
-	count = 0;
+	var count = 0;
+	if(!Array.isArray(books)) {
+		return false;
+	}
+
 	for (var i in books) {
-		if(!Array.isArray(books)) {
-			return false;
-		}
 		if (this.addBook(books[i])) {
 			count++;
-	 	}
-	 }
-	 return count;
+		}
+	}
+	return count;
 };
 
 Library.prototype.getRandomAuthorName = function() {
@@ -111,14 +112,12 @@ Library.prototype.getStorage = function(instanceKey) {
 	 return JSON.parse(localStorage.getItem(this.instanceKey));
 };
 
-Library.prototype.advancedSearch = function(property) {
-	var results = [];
-	for (var i in this.myBookArray) {
-		if(this.myBookArray[i].property === this.property) {
-			results.push(this.myBookArray[i]);
-		};
+Library.prototype.advancedSearchByAny = function(searchString) {
+	for (var i in Object.values(this.myBookArray)) {
+		if (Object.values(this.myBookArray[i]).includes(searchString)) {
+			console.log(this.myBookArray[i]);
+		}
 	}
-	return results;
 };
 
 var Book = function(oArgs) {
@@ -127,6 +126,10 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
+
+// newBook = function(arg) {
+// 	return arg instanceof Book ? arg : new Book(arg);
+// };
 
 window.gLib = new Library("All");
 window.gLibDenver = new Library("Denver");
