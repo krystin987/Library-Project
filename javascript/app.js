@@ -50,9 +50,9 @@ Library.prototype.getRandomBook = function() {
 };
 
 Library.prototype.getBooksByTitle = function(title) {
-	var results = [];;
+	var results = [];
 	for (var i in this.myBookArray) {
-		if (this.myBookArray[i].title.toLowerCase().includes(title)) {
+		if (this.myBookArray[i].title.toLowerCase().includes(title.toLowerCase())) {
 			results.push(this.myBookArray[i]);
 		}
 	}
