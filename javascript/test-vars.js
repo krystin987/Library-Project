@@ -3,39 +3,41 @@ window.gLibDenver = new Library("Denver");
 window.gLibBoulder = new Library("Boulder");
 
 // hardcoded variables exist for testing purposes
-var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numPages: 390, pubDate: "03/12/1987"});
-var gBookTwo = new Book(oArgs = {title: "Slaughterhouse Five", author: "Kurt Vonnegut", numPages: 400, pubDate: "03/01/1969"});
-var gBookThree = new Book(oArgs = {title: "To Kill a Mockingbird", author: "Harper Lee", numPages: 281, pubDate: "07/11/1960"});
-var gBookFour = new Book(oArgs = {title: "Starship Troopers", author: "Robert A. Heinlein", numPages: 263, pubDate: "12/01/1959"});
-var gBookFive = new Book(oArgs = {title: "Candide", author: "Voltaire", numPages: 176, pubDate: "01/01/1759"});
+var gBookOne = new Book({title: "It", author: "Stephen King", numPages: 390, pubDate: "03/12/1987"});
+var gBookTwo = new Book({title: "Slaughterhouse Five", author: "Kurt Vonnegut", numPages: 400, pubDate: "03/01/1969"});
+var gBookThree = new Book({title: "To Kill a Mockingbird", author: "Harper Lee", numPages: 281, pubDate: "07/11/1960"});
+var gBookFour = new Book({title: "Starship Troopers", author: "Robert A. Heinlein", numPages: 263, pubDate: "12/01/1959"});
+var gBookFive = new Book({title: "Candide", author: "Voltaire", numPages: 176, pubDate: "01/01/1759"});
 
 // hardcoded objects exist for test purposes
 var williamsonObj = [
 // Jack Williamson coined such phrases as: genetic engineering, android, anti-matter, psionics, terraforming;
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "The Legion of Space",
 	 	author: "Jack Williamson",
 	 	numPages: 259,
 	 	pubDate: "1947"
 	}),
 
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "The Cometeers",
 	 	author: "Jack Williamson",
 	 	numPages: 506,
 	 	pubDate: "1/1/1950"
 	}),
-	new Book(oArgs =
-	{
+
+	new Book
+	({
 		title: "Darker Than You Think",
 	 	author: "Jack Williamson",
 	 	numPages: 310,
 	 	pubDate: "1/1/1948"
 	}),
-	new Book(oArgs =
-	{
+
+	new Book
+	({
 		title: "Star Bridge",
 	 	author: "Jack Williamson",
 	 	numPages: 221,
@@ -44,39 +46,40 @@ var williamsonObj = [
 ];
 
 var thompsonObj = [
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "Fear and Loathing on the Campaign Trail '72'",
 	 	author: "Hunter S. Thompson",
 	 	numPages: 506,
 	 	pubDate: "1/1/1973"
 	}),
-	new Book(oArgs =
-	{
+
+	new Book
+	({
 		title: "The Great Shark Hunt: Strange Tales from a Strange Time (Gonzo Papers, Volume 1)",
 		author: "Hunter S. Thompson",
 		numPages: 624,
 		pubDate: "1/1/1979"
 	}),
 
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream",
 		author: "Hunter S. Thompson",
 		numPages: 204,
 		pubDate: "11/11/1971"
 	}),
 
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "The Rum Diary",
 		author: "Hunter S. Thompson",
 		numPages: 204,
 		pubDate: "1/1/1998"
 	}),
 
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "Hell's Angels: The Strange and Terrible Saga of the Outlaw Motorcycle Gangs",
 		author: "Hunter S. Thompson",
 		numPages: 278,
@@ -85,15 +88,16 @@ var thompsonObj = [
 ];
 
 var knuthObj = [
-	new Book(oArgs =
-	{
+	new Book
+	({
 		title: "The Art of Computer Programming",
 		author: "Donald Knuth",
 		numPages: 2000,
 		pubDate: "1/1/1968"
 	}),
-	new Book(oArgs =
-	{
+
+	new Book
+	({
 		title: "Concrete Mathematics: A Foundation for Computer Science",
 		author: "Donald Knuth",
 		numPages: 657,

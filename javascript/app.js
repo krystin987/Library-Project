@@ -1,3 +1,7 @@
+// $(function()){
+//
+// };
+
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
