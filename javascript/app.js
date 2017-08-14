@@ -28,10 +28,10 @@ Library.prototype.removeBookByTitle = function(title) {
 	return false;
 };
 
-Library.prototype.removeBookByAuthor = function(authorName) {
+Library.prototype.removeBooksByAuthor = function(authorName) {
 	// filter it
 	var newBookArray = this.myBookArray.filter(function(book) {
-		return !book.author.toLowerCase().includes(authorName);
+		return !book.author.toLowerCase().includes(authorName.toLowerCase());
 	});
 	// replace it
 	if (this.myBookArray.length > newBookArray.length) {
