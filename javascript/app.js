@@ -1,5 +1,5 @@
 var Library = function(instanceKey) {
-	this.myBookArray = new Array;
+	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
 };
 
@@ -117,7 +117,3 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
-
-window.gLib = new Library("All");
-window.gLibDenver = new Library("Denver");
-window.gLibBoulder = new Library("Boulder");

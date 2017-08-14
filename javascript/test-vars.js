@@ -1,3 +1,7 @@
+window.gLib = new Library("All");
+window.gLibDenver = new Library("Denver");
+window.gLibBoulder = new Library("Boulder");
+
 // hardcoded variables exist for testing purposes
 var gBookOne = new Book(oArgs = {title: "It", author: "Stephen King", numPages: 390, pubDate: "03/12/1987"});
 var gBookTwo = new Book(oArgs = {title: "Slaughterhouse Five", author: "Kurt Vonnegut", numPages: 400, pubDate: "03/01/1969"});
