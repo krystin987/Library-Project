@@ -94,6 +94,7 @@ Library.prototype.getAuthors = function() {
 
 Library.prototype.setStorage = function(instanceKey) {
 	localStorage.setItem(instanceKey, JSON.stringify(this.myBookArray));
+	return localStorage.Denver;
 };
 
 Library.prototype.getStorage = function(instanceKey) {
