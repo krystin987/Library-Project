@@ -7,7 +7,7 @@ var gBookFive = new Book(oArgs = {title: "Candide", author: "Voltaire", numPages
 
 // hardcoded objects exist for test purposes
 var williamsonObj = [
-// Jack Williamson coined such phrases as: genetic engineering
+// Jack Williamson coined such phrases as: genetic engineering, android, anti-matter, psionics, terraforming;
 	new Book(oArgs =
 	{
 		title: "The Legion of Space",
@@ -53,6 +53,14 @@ var thompsonObj = [
 		author: "Hunter S. Thompson",
 		numPages: 624,
 		pubDate: "1/1/1979"
+	}),
+
+	new Book(oArgs =
+	{
+		title: "Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream",
+		author: "Hunter S. Thompson",
+		numPages: 204,
+		pubDate: "11/11/1971"
 	}),
 
 	new Book(oArgs =

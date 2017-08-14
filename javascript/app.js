@@ -20,7 +20,7 @@ Library.prototype.addBook = function(book){
 
 Library.prototype.removeBookByTitle = function(title) {
 	for (var i in this.myBookArray) {
-		if (this.myBookArray[i].title.toLowerCase().includes(title)) {
+		if (this.myBookArray[i].title.toLowerCase().includes(title.toLowerCase())) {
 			this.myBookArray.splice(i, 1);
 			return true;
 		}
@@ -97,7 +97,7 @@ Library.prototype.setStorage = function(instanceKey) {
 };
 
 Library.prototype.getStorage = function(instanceKey) {
-	 return JSON.parse(localStorage.getItem(this.instanceKey));
+	 return this.myBookArray.push(JSON.parse(localStorage.getItem(this.instanceKey)));
 };
 
 Library.prototype.advancedSearch = function(...pairs) {
