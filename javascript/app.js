@@ -98,7 +98,7 @@ Library.prototype.setStorage = function(instanceKey) {
 };
 
 Library.prototype.getStorage = function(instanceKey) {
-	 return this.myBookArray.push(JSON.parse(localStorage.getItem(this.instanceKey)));
+	 return this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
 };
 
 Library.prototype.advancedSearch = function(...pairs) {
