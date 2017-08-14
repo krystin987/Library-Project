@@ -97,7 +97,7 @@ var knuthObj = [
 	})
 ];
 
-Library.prototype.addAllBooksTest = function() {
+Library.prototype.addAllBooks = function() {
 	gLibDenver.addBook(gBookOne);
 	gLibDenver.addBook(gBookTwo);
 	gLibDenver.addBook(gBookThree);
