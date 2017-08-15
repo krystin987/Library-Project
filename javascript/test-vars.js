@@ -116,7 +116,3 @@ Library.prototype.addAllBooks = function() {
 	gLibDenver.addBooks(williamsonObj);
 	console.log(gLibDenver.myBookArray);
 };
-
-// newBook = function(arg) {
-// 	return arg instanceof Book ? arg : new Book(arg);
-// };

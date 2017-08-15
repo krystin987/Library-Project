@@ -8,6 +8,11 @@ var Library = function(instanceKey) {
 };
 
 Library.prototype.addBook = function(book){
+
+	newBook = function(arg) {
+		return arg instanceof Book ? arg : new Book(arg);
+	};
+
 	for (var i in book) {
 		if (Array.isArray(book)) {
 			return false;
