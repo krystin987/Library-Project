@@ -1,18 +1,38 @@
-// $(function()){
-//
-// };
-
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
 };
 
+
+Library.prototype.init = function(){
+	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
+	this._bindEvents();
+	this._checkLocalStorage();
+	// call function to populate book array if localStorage has our bookarray value
+};
+
+Library.prototype._bindEvents = function() {
+	$("button#get-random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
+	// $("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
+	// this is where all event binding happens - but NOT event handlers, just function calls
+	// within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
+	// otherwise, jQuery hijacks our context, this becomes the selector instead
+	// $("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
+};
+
+Library.prototype._checkLocalStorage = function() {
+	this.getStorage();
+};
+
+// Library.prototype._handleGetMyName = function() {
+// 	var inputVal = $("input.my-name").val();
+// 	alert(inputVal);
+// };
+
 Library.prototype.addBook = function(book){
-
-	newBook = function(arg) {
-		return arg instanceof Book ? arg : new Book(arg);
-	};
-
+	// newBook = function(arg) {
+	// 	return arg instanceof Book ? arg : new Book(arg);
+	// };
 	for (var i in book) {
 		if (Array.isArray(book)) {
 			return false;
@@ -126,3 +146,13 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
+
+$(function(){
+	console.log("ready");
+	window.gLib = new Library("All");
+	window.gLib.init();
+	window.gLibDenver = new Library("Denver");
+	window.gLibDenver.init();
+	window.gLibBoulder = new Library("Boulder");
+	window.gLibBoulder.init();
+});

@@ -6,28 +6,191 @@
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/styles.css">
     <title>Library</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
 
-  <body>
+  <body class="container-fluid">
     <!-- header/banner -->
-    <header class="header">DIGITAL LIBERRY</header>
+    <header class="header">DIGITAL LIBRARY</header>
+
     <!-- jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3">Fluid jumbotron</h1>
-    <p class="lead">This is where data will show up from the localstorage.... or something like that....?</p>
+  <div class="jumbotron jumbotron-fluid col-md-8">
+    <div class="container">
+      <h1 class="display-3">Fluid jumbotron</h1>
+      <p class="lead">This is where data will show up from the localstorage.... or something like that....?</p>
+    </div>
   </div>
-</div>
+
+    <!-- options button -->
+    <div class="card">
+      <div class="card-body">
+        <h6>How would you like to proceed....</h6>
+        <button type="button" class="btn btn-primary">Add a Book</button>
+        <button type="button" class="btn btn-primary">Add Many Books</button>
+        <button type="button" class="btn btn-primary">Remove a Book</button>
+        <button id="get-random-book-btn" type="button" class="btn btn-primary">Try a Random Book</button>
+        <button type="button" class="btn btn-primary">Search by Title</button>
+        <button type="button" class="btn btn-primary">Search by Author</button>
+        <button type="button" class="btn btn-primary">Find all Authors</button>
+        <button type="button" class="btn btn-primary">Find a Random Author</button>
+        <!-- <button id="check-ls-btn"type="button" class="btn btn-primary">check local storage</button> -->
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="navbar navbar-default">
+          <div class="nav nav-justified navbar-nav">
+
+            <form class="navbar-form navbar-search" role="search">
+              <div class="input-group">
+
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-search btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <span class="label-icon">Search</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu pull-left" role="menu">
+                    <li>
+                    <a href="#">
+                      <span class="glyphicon glyphicon-user"></span>
+                      <span class="label-icon">Search By User</span>
+                    </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class="glyphicon glyphicon-book"></span>
+                        <span class="label-icon">Search By Organization</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <input id="search-input-field" type="text" class="form-control">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-search btn-default">
+                    GO
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </div>
+  <!-- search input - default state-->
+
+  <!-- search field for text string -->
+  <!-- <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <select id="search-drop-down" class="form-control form-control-sm">
+          drop down for possible predetermined keys
+          <option>Small select</option>
+        </select>
+        <input type="text" class="form-control my-name" placeholder="Search for..." aria-label="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button">Go!</button>
+        </span>
+      </div>
+    </div>
+  </div> -->
+
+    <!-- add 1 book at a time - repopulates if many are needed -->
+  <!-- <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Title">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Author">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Number of Pages">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Published Date">
+      </div>
+      <button type="button" class="btn btn-primary">Add a Book</button>
+  </div>
+  </form> -->
+
+      <!-- add many books  -->
+
+  <!-- <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Title">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Author">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Number of Pages">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Published Date">
+      </div>
+      <button type="button" class="btn btn-primary">Add all the Books!</button>
+  </div>
+  </form> -->
+
+  <!-- remove a book by title  -->
+
+  <!-- <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Title">
+      </div>
+      <button type="button" class="btn btn-primary">Remove this title</button>
+  </div>
+  </form> -->
+
+    <!-- remove books by a given author -->
+
+  <!-- <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Author Name">
+      </div>
+      <button type="button" class="btn btn-primary">Remove titles by this Author</button>
+  </div>
+  </form> -->
+
+    <!-- try a random book! -->
+
+    <!-- <form>
+      <div class="form-row">
+        <button type="button" class="btn btn-primary">Get a random Book!</button>
+    </div>
+    </form> -->
+
+    <!-- search for a book by title -->
+
+    <!-- <form>
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Title">
+        </div>
+        <button type="button" class="btn btn-primary">Search this title!</button>
+    </div>
+    </form> -->
+
+    <!-- search for a book by Author -->
+
+    <!-- <form>
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Author">
+        </div>
+        <button type="button" class="btn btn-primary">Search this Author!</button>
+    </div>
+    </form> -->
 
 
 
-
-
-
-
+  <script src="./javascript/jquery-3.2.1.min.js"></script>
+  <script src="./javascript/jquery.js"></script>
   <script src="./javascript/app.js"></script>
   <script src="./javascript/test-vars.js"></script>
-  <script src="./javascript/jquery.js"></script>
   </body>
 </html>
