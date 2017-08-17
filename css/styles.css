@@ -5,10 +5,18 @@ body {
   width: 10%;
 }
 
-.well {
-  float: right;
-  clear: both;
+.jumbo-section {
+  height: 100%;
+  width: 100%;
 }
+
+/*.jumbotron {
+  border: 1px solid green;
+}
+
+.well {
+  border: 1px solid blue;
+}*/
 
 .search-bar-container {
   width: 100%;

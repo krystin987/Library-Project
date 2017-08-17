@@ -4,14 +4,13 @@ var Library = function(instanceKey) {
 	this.storageArray = new Array();
 };
 
-
-Library.prototype.displayOnJumbo = function (displayBook){
-	$("#jumbo-display").append("<p>akdsjf</p>");
-};
+// Library.prototype.displayOnJumbo = function (displayBook){
+// 	$("#jumbo-display").append("<p>akdsjf</p>");
+// };
 
 Library.prototype.init = function(){
-	this._bindEvents();
 	this._checkLocalStorage();
+	this._bindEvents();
 	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
 	// call function to populate book array if localStorage has our bookarray value
 };
@@ -45,8 +44,15 @@ Library.prototype._handleGetStorage = function() {
 };
 
 Library.prototype._handleGetRandomBook = function() {
-	return this.getRandomBook();
-	// $( "#jumbo-display" ).append("<p>LASDJFLKASDFJASKLFJADSLKFJAKSDFJ</p>");
+	$(".remove-div").remove();
+	var rando = this.getRandomBook();
+	for(var i in rando){
+		console.log(this);
+		var myClass = "remove-div";
+		var div = $("<div>"+rando[i]+"<div>").addClass("remove-div");
+		$("#well-test").after(div);
+		$("#well-test").append(div);
+	}
 };
 
 Library.prototype._handleGetRandomAuthor = function() {
