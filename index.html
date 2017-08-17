@@ -35,7 +35,7 @@
       <div class="card-body">
         <h6>How would you like to proceed....</h6>
         <button type="button" class="btn btn-primary">Add a Book</button>
-        <button type="button" class="btn btn-primary">Add Many Books</button>
+        <button id="add-many-books-btn" type="button" class="btn btn-primary">Add Many Books</button>
         <button type="button" class="btn btn-primary">Remove a Book</button>
         <button id="random-book-btn" type="button" class="btn btn-primary">Try a Random Book</button>
         <button type="button" class="btn btn-primary">Search by Title</button>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="row">
         <nav class="navbar navbar-default">
           <div class="nav nav-justified navbar-nav">
@@ -87,43 +87,11 @@
           </div>
         </nav>
       </div>
-    </div>
+    </div> -->
   <!-- search input - default state-->
 
-  <!-- search field for text string -->
-  <!-- <div class="row">
-    <div class="col-md-6">
-      <div class="input-group">
-        <select id="search-drop-down" class="form-control form-control-sm">
-          drop down for possible predetermined keys
-          <option>Small select</option>
-        </select>
-        <input type="text" class="form-control my-name" placeholder="Search for..." aria-label="Search for...">
-        <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button">Go!</button>
-        </span>
-      </div>
-    </div>
-  </div> -->
-
     <!-- add 1 book at a time - repopulates if many are needed -->
-  <!-- <form>
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Author">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Number of Pages">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Published Date">
-      </div>
-      <button type="button" class="btn btn-primary">Add a Book</button>
-  </div>
-  </form> -->
+  <form id="search-fields-section"></form>
 
       <!-- add many books  -->
 

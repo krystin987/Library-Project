@@ -1,5 +1,5 @@
 // hardcoded variables exist for testing purposes
-var gBookOne = new Book({title: "It", author: "Stephen King", numPages: 390, pubDate: "03/12/1987"});
+var gBookOne = new Book({title: "It", author: "Stephen King", numPages: 390, pubDate: ("03/12/1987")});
 var gBookTwo = new Book({title: "Slaughterhouse Five", author: "Kurt Vonnegut", numPages: 400, pubDate: "03/01/1969"});
 var gBookThree = new Book({title: "To Kill a Mockingbird", author: "Harper Lee", numPages: 281, pubDate: "07/11/1960"});
 var gBookFour = new Book({title: "Starship Troopers", author: "Robert A. Heinlein", numPages: 263, pubDate: "12/01/1959"});
@@ -100,6 +100,15 @@ var knuthObj = [
 		pubDate: "1/1/1994"
 	})
 ];
+
+Library.prototype.removeMostBooks = function() {
+	gLibDenver.removeBooksByAuthor("thom");
+	gLibDenver.removeBooksByAuthor("knut");
+	gLibDenver.removeBooksByAuthor("jack");
+	gLibDenver.removeBooksByAuthor("lee");
+	gLibDenver.removeBooksByAuthor("hein");
+	gLibDenver.removeBooksByAuthor("vo");
+};
 
 Library.prototype.addAllBooks = function() {
 	gLibDenver.addBook(gBookOne);

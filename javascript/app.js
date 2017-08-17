@@ -4,10 +4,6 @@ var Library = function(instanceKey) {
 	this.storageArray = new Array();
 };
 
-// Library.prototype.displayOnJumbo = function (displayBook){
-// 	$("#jumbo-display").append("<p>akdsjf</p>");
-// };
-
 Library.prototype.init = function(){
 	this._checkLocalStorage();
 	this._bindEvents();
@@ -21,12 +17,53 @@ Library.prototype._bindEvents = function() {
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
+	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
+	$("button#add-many-books-btn").on("click", $.proxy(this._handleAddManyBooks, this));
+
 // 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
 // // this is where all event binding happens - but NOT event handlers, just function calls
 // // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
 // // otherwise, jQuery hijacks our context, this becomes the selector instead
 // 	$("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
 };
+
+// <div class="form-row">
+// 	<div class="col">
+// 		<input type="text" class="form-control" placeholder="Title">
+// 	</div>
+// 	<div class="col">
+// 		<input type="text" class="form-control" placeholder="Author">
+// 	</div>
+// 	<div class="col">
+// 		<input type="text" class="form-control" placeholder="Number of Pages">
+// 	</div>
+// 	<div class="col">
+// 		<input type="text" class="form-control" placeholder="Published Date">
+// 	</div>
+// 	<button type="button" class="btn btn-primary">Add a Book</button>
+// </div>
+
+Library.prototype._handleAddManyBooks = function() {
+	
+	$("#search-fields-section").append(
+		`<div class="form-row">
+			<div class="col">
+				<input type="text" class="form-control" placeholder="Title">
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" placeholder="Author">
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" placeholder="Number of Pages">
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" placeholder="Published Date">
+			</div>
+			<button type="button" class="btn btn-primary">Add a Book</button>
+		</div>`
+	);
+};
+
 
 Library.prototype._checkLocalStorage = function() {
 	this.getStorage();
@@ -47,20 +84,24 @@ Library.prototype._handleGetRandomBook = function() {
 	$(".remove-div").remove();
 	var rando = this.getRandomBook();
 	for(var i in rando){
-		console.log(this);
-		var myClass = "remove-div";
 		var div = $("<div>"+rando[i]+"<div>").addClass("remove-div");
-		$("#well-test").after(div);
 		$("#well-test").append(div);
 	}
 };
 
+// Library.prototype._handleGetAuthors = function() {
+// 	// $(".remove-div").remove();
+// 	var random = this.getAuthors();
+// 	// console.log(random);
+// 	for(var i of random.keys()){
+// 		var div = $("<div>"+random+"<div>").addClass("remove-div");
+// 		$("#well-test").append(div);
+// 	}
+// 	// console.log(this.getAuthors());
+// };
+
 Library.prototype._handleGetRandomAuthor = function() {
 	console.log(this.getRandomAuthorName());
-};
-
-Library.prototype._handleGetAuthors = function() {
-	console.log(this.getAuthors());
 };
 
 Library.prototype.addBook = function(book){
