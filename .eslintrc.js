@@ -4,7 +4,10 @@ module.exports = {
         "es6": true
         // "jquery": true
     },
-
+    "settings": {
+        "html/indent": "0",   // code should start at the beginning of the line (no initial indentation).
+        "html/indent": "tab", // indentation is one tab at the beginning of the line.
+    },
     // "extends": "eslint:recommended",
     "rules": {
         "indent": [

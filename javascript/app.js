@@ -1,10 +1,66 @@
-// $(function()){
-//
-// };
-
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
+	this.storageArray = new Array();
+};
+
+// Library.prototype.displayOnJumbo = function (displayBook){
+// 	$("#jumbo-display").append("<p>akdsjf</p>");
+// };
+
+Library.prototype.init = function(){
+	this._checkLocalStorage();
+	this._bindEvents();
+	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
+	// call function to populate book array if localStorage has our bookarray value
+};
+
+Library.prototype._bindEvents = function() {
+	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
+	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
+	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
+	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
+	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
+// 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
+// // this is where all event binding happens - but NOT event handlers, just function calls
+// // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
+// // otherwise, jQuery hijacks our context, this becomes the selector instead
+// 	$("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
+};
+
+Library.prototype._checkLocalStorage = function() {
+	this.getStorage();
+	// console.log(this.myBookArray);
+};
+
+Library.prototype._handleSetStorage = function() {
+	this.setStorage(this.instanceKey);
+	console.log(localStorage);
+};
+
+Library.prototype._handleGetStorage = function() {
+	localStorage.clear();
+	console.log(localStorage);
+};
+
+Library.prototype._handleGetRandomBook = function() {
+	$(".remove-div").remove();
+	var rando = this.getRandomBook();
+	for(var i in rando){
+		console.log(this);
+		var myClass = "remove-div";
+		var div = $("<div>"+rando[i]+"<div>").addClass("remove-div");
+		$("#well-test").after(div);
+		$("#well-test").append(div);
+	}
+};
+
+Library.prototype._handleGetRandomAuthor = function() {
+	console.log(this.getRandomAuthorName());
+};
+
+Library.prototype._handleGetAuthors = function() {
+	console.log(this.getAuthors());
 };
 
 Library.prototype.addBook = function(book){
@@ -102,7 +158,11 @@ Library.prototype.setStorage = function(instanceKey) {
 };
 
 Library.prototype.getStorage = function(instanceKey) {
-	 return this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
+	this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
+	if (this.myBookArray === null) {
+		this.myBookArray = new Array();
+		this.addAllBooks();
+	}
 };
 
 Library.prototype.advancedSearch = function(...pairs) {
@@ -121,3 +181,16 @@ var Book = function(oArgs) {
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
 };
+
+$(function(){
+	window.gLibDenver = new Library("Denver");
+	window.gLibDenver.init();
+	// window.gLib = new Library("All");
+	// window.gLib.init();
+	// window.gLibBoulder = new Library("Boulder");
+	// window.gLibBoulder.init();
+});
+
+// newBook = function(arg) {
+// 	return arg instanceof Book ? arg : new Book(arg);
+// };
