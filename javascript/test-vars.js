@@ -110,5 +110,5 @@ Library.prototype.addAllBooks = function() {
 	gLibDenver.addBooks(knuthObj);
 	gLibDenver.addBooks(thompsonObj);
 	gLibDenver.addBooks(williamsonObj);
-	console.log(gLibDenver.myBookArray);
+	// console.log(gLibDenver.myBookArray);
 };

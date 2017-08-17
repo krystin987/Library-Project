@@ -1,6 +1,7 @@
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
+	this.storageArray = new Array();
 };
 
 
@@ -17,6 +18,7 @@ Library.prototype.init = function(){
 
 Library.prototype._bindEvents = function() {
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
+	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
@@ -25,6 +27,11 @@ Library.prototype._bindEvents = function() {
 // // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
 // // otherwise, jQuery hijacks our context, this becomes the selector instead
 // 	$("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
+};
+
+Library.prototype._checkLocalStorage = function() {
+	this.getStorage();
+	// console.log(this.myBookArray);
 };
 
 Library.prototype._handleSetStorage = function() {
@@ -37,19 +44,9 @@ Library.prototype._handleGetStorage = function() {
 	console.log(localStorage);
 };
 
-Library.prototype._checkLocalStorage = function() {
-	if (Object.keys(localStorage.hasOwnProperty() === false)) {
-		this.addAllBooks();
-		return false;
-	}
-	return this.getStorage(Object.keys);
-};
-
-//
 Library.prototype._handleGetRandomBook = function() {
-	console.log(this.getRandomBook());
+	return this.getRandomBook();
 	// $( "#jumbo-display" ).append("<p>LASDJFLKASDFJASKLFJADSLKFJAKSDFJ</p>");
-	// $(selector).append(content,function(index,html))
 };
 
 Library.prototype._handleGetRandomAuthor = function() {
@@ -155,7 +152,11 @@ Library.prototype.setStorage = function(instanceKey) {
 };
 
 Library.prototype.getStorage = function(instanceKey) {
-	 return this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
+	this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
+	if (this.myBookArray === null) {
+		this.myBookArray = new Array();
+		this.addAllBooks();
+	}
 };
 
 Library.prototype.advancedSearch = function(...pairs) {

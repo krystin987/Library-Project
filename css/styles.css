@@ -5,6 +5,11 @@ body {
   width: 10%;
 }
 
+.well {
+  float: right;
+  clear: both;
+}
+
 .search-bar-container {
   width: 100%;
   margin: auto;
@@ -27,4 +32,8 @@ body {
     background-color: transparent;
     color: inherit;
     transition: all .5s;
+}
+
+.display-3 {
+  font-size: 20px;
 }
