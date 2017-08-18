@@ -25,7 +25,9 @@ Library.prototype._bindEvents = function() {
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
+	$("#get-by-title-input").keyup(function() {$("#get-by-title-btn").prop("disabled", false);});
 	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
+	$("#get-by-author-input").keyup(function() {$("#get-by-author-btn").prop("disabled", false);});
 
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
 	$("#remove-by-title-input").keyup(function() {$("#remove-by-title-btn").prop("disabled", false);});
@@ -34,7 +36,6 @@ Library.prototype._bindEvents = function() {
 
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
-	$("#get-by-title-input").keyup(function() {$("#get-by-title-btn").prop("disabled", false);});
 };
 
 Library.prototype._checkLocalStorage = function() {
@@ -126,6 +127,8 @@ Library.prototype._handleGetBooksByTitle = function() {
 
 Library.prototype._handleGetBooksByAuthor = function() {
 	console.log(this.getBooksByAuthor($("#get-by-author-input").val()));
+	$("#get-by-author-input").val("");
+	$("#get-by-author-btn").prop("disabled", true);
 };
 
 Library.prototype._handleGetAuthors = function() {
