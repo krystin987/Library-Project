@@ -22,12 +22,8 @@ Library.prototype._bindEvents = function() {
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
 	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
-
-// 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
-// // this is where all event binding happens - but NOT event handlers, just function calls
-// // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
-// // otherwise, jQuery hijacks our context, this becomes the selector instead
-// 	$("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
+	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
+	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 };
 
 Library.prototype._checkLocalStorage = function() {
@@ -93,6 +89,22 @@ Library.prototype._handleRemoveBooksByAuthor = function() {
 	this.removeBooksByAuthor(author);
 };
 
+Library.prototype._handleGetBooksByTitle = function() {
+	var title = $("#get-by-title-input").val();
+	console.log(this.getBooksByTitle(title));
+};
+
+Library.prototype._handleGetBooksByAuthor = function() {
+	var author = $("#get-by-author-input").val();
+	console.log(this.getBooksByAuthor(author));
+};
+
+Library.prototype._handleGetAuthors = function() {
+	var authors = this.getAuthors();
+	console.log(authors);
+};
+
+// foundation functions
 Library.prototype.addBook = function(book){
 	for (var i in book) {
 		if (Array.isArray(book)) {
@@ -229,15 +241,4 @@ $(function(){
 
 // newBook = function(arg) {
 // 	return arg instanceof Book ? arg : new Book(arg);
-// };
-
-// Library.prototype._handleGetAuthors = function() {
-// 	// $(".remove-div").remove();
-// 	var random = this.getAuthors();
-// 	// console.log(random);
-// 	for(var i of random.keys()){
-// 		var div = $("<div>"+random+"<div>").addClass("remove-div");
-// 		$("#well-test").append(div);
-// 	}
-// 	// console.log(this.getAuthors());
 // };
