@@ -8,7 +8,7 @@ var gBookFive = new Book({title: "Candide", author: "Voltaire", numPages: 176, p
 // hardcoded objects exist for test purposes
 var williamsonObj = [
 // Jack Williamson coined such phrases as: genetic engineering, android, anti-matter, psionics, terraforming;
-	new Book
+	new Book 
 	({
 		title: "The Legion of Space",
 	 	author: "Jack Williamson",

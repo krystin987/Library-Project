@@ -34,8 +34,8 @@
     <div class="card">
       <div class="card-body">
         <h6>How would you like to proceed....</h6>
-        <button type="button" class="btn btn-primary">Add a Book</button>
-        <button id="add-many-books-btn" type="button" class="btn btn-primary">Add Many Books</button>
+        <!-- <button id="add-single-book-btn" type="button" class="btn btn-primary">Add a Book</button>
+        <button id="add-many-books-btn" type="button" class="btn btn-primary">Add Many Books</button> -->
         <button type="button" class="btn btn-primary">Remove a Book</button>
         <button id="random-book-btn" type="button" class="btn btn-primary">Try a Random Book</button>
         <button type="button" class="btn btn-primary">Search by Title</button>
@@ -45,6 +45,24 @@
         <button id="save-state-btn"type="button" class="btn btn-primary">save state</button>
         <button id="clear-state-button"type="button" class="btn btn-primary">clear state</button>
       </div>
+    </div>
+
+    <div class="form-row single-book-add">
+			<div class="col">
+				<input id="single-title-input" type="text" class="form-control-1" placeholder="Title">
+			</div>
+			<div class="col">
+				<input id="single-author-input" type="text" class="form-control-2" placeholder="Author">
+			</div>
+			<div class="col">
+				<input id="single-pages-input" type="text" class="form-contro-3" placeholder="Number of Pages">
+			</div>
+			<div class="col">
+				<input id="single-date-input" type="text" class="form-control-4" placeholder="Published Date">
+			</div>
+      <div class="add-book-btn-div">
+			<button id="add-single-click-point" type="button" class="add-single-book-btn btn btn-primary">Add a Book</button>
+    </div>
     </div>
 
     <!-- <div class="container-fluid">
@@ -92,7 +110,7 @@
 
     <!-- add 1 book at a time - repopulates if many are needed -->
   <form id="search-fields-section"></form>
-
+  <!-- <form id="single-search-fields-section"></form> -->
       <!-- add many books  -->
 
   <!-- <form>
