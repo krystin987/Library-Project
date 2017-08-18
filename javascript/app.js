@@ -12,7 +12,7 @@ Library.prototype.init = function(){
 };
 
 Library.prototype._bindEvents = function() {
-	$("button#add-single-book-btn").on("click", $.proxy(this._handleSingleAdd, this));
+	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
@@ -20,7 +20,8 @@ Library.prototype._bindEvents = function() {
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
-	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
+	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
+
 // 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
 // // this is where all event binding happens - but NOT event handlers, just function calls
 // // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
@@ -79,6 +80,11 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		temp.push(newBook);
 	}
 	this.addBooks(temp);
+};
+
+Library.prototype._handleRemoveBookByTitle = function() {
+	var book = $("#remove-by-title-input").val();
+	this.removeBookByTitle(book);
 };
 
 // Library.prototype._handleAddFields = function {
