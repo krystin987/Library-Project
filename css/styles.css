@@ -23,6 +23,20 @@ body {
   margin: auto;
 }
 
+.single-book-add {
+  margin: 25px;
+
+}
+
+.single-book-add input{
+  padding-right: 20%;
+  border: 1px solid black;
+}
+
+.add-book-btn-div {
+  margin-top: -5px;
+}
+
 .form-control {
   padding: 0px 50% 0px 0px;
 }
