@@ -12,7 +12,7 @@ Library.prototype.init = function(){
 };
 
 Library.prototype._bindEvents = function() {
-	$("button#add-single-book-btn").on("click", $.proxy(this._handleSingleAdd, this));
+	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
@@ -20,12 +20,10 @@ Library.prototype._bindEvents = function() {
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
-	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
-// 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
-// // this is where all event binding happens - but NOT event handlers, just function calls
-// // within the parent of this, what does this refer to - in other words, it keeps "this" in the scope of context...
-// // otherwise, jQuery hijacks our context, this becomes the selector instead
-// 	$("button#check-ls-btn").on("click", $.proxy(this._checkLocalStorage));
+	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
+	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
+	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
+	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 };
 
 Library.prototype._checkLocalStorage = function() {
@@ -81,31 +79,32 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 	this.addBooks(temp);
 };
 
-// Library.prototype._handleAddFields = function {
-//
-// };
+Library.prototype._handleRemoveBookByTitle = function() {
+	var book = $("#remove-by-title-input").val();
+	this.removeBookByTitle(book);
+};
 
-//
-// Library.prototype._handleAddManyBooks = function() {
-// 	$("#search-fields-section").append(
-// 		`<div class="form-row">
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Title">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Author">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Number of Pages">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Published Date">
-// 		</div>
-// 		<button id="add-many-click-point" type="button" class="btn btn-primary">Add Many Books!</button>
-// 		</div>`
-// 	);
-// };
+Library.prototype._handleRemoveBooksByAuthor = function() {
+	var author = $("#remove-by-author-input").val();
+	this.removeBooksByAuthor(author);
+};
 
+Library.prototype._handleGetBooksByTitle = function() {
+	var title = $("#get-by-title-input").val();
+	console.log(this.getBooksByTitle(title));
+};
+
+Library.prototype._handleGetBooksByAuthor = function() {
+	var author = $("#get-by-author-input").val();
+	console.log(this.getBooksByAuthor(author));
+};
+
+Library.prototype._handleGetAuthors = function() {
+	var authors = this.getAuthors();
+	console.log(authors);
+};
+
+// foundation functions
 Library.prototype.addBook = function(book){
 	for (var i in book) {
 		if (Array.isArray(book)) {
@@ -242,15 +241,4 @@ $(function(){
 
 // newBook = function(arg) {
 // 	return arg instanceof Book ? arg : new Book(arg);
-// };
-
-// Library.prototype._handleGetAuthors = function() {
-// 	// $(".remove-div").remove();
-// 	var random = this.getAuthors();
-// 	// console.log(random);
-// 	for(var i of random.keys()){
-// 		var div = $("<div>"+random+"<div>").addClass("remove-div");
-// 		$("#well-test").append(div);
-// 	}
-// 	// console.log(this.getAuthors());
 // };
