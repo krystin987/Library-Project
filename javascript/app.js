@@ -21,6 +21,7 @@ Library.prototype._bindEvents = function() {
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
+	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
 
 // 	$("button.get-my-name").on("click", $.proxy(this._handleGetMyName, this));
 // // this is where all event binding happens - but NOT event handlers, just function calls
@@ -87,30 +88,10 @@ Library.prototype._handleRemoveBookByTitle = function() {
 	this.removeBookByTitle(book);
 };
 
-// Library.prototype._handleAddFields = function {
-//
-// };
-
-//
-// Library.prototype._handleAddManyBooks = function() {
-// 	$("#search-fields-section").append(
-// 		`<div class="form-row">
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Title">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Author">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Number of Pages">
-// 		</div>
-// 		<div class="col">
-// 		<input type="text" class="form-control" placeholder="Published Date">
-// 		</div>
-// 		<button id="add-many-click-point" type="button" class="btn btn-primary">Add Many Books!</button>
-// 		</div>`
-// 	);
-// };
+Library.prototype._handleRemoveBooksByAuthor = function() {
+	var author = $("#remove-by-author-input").val();
+	this.removeBooksByAuthor(author);
+};
 
 Library.prototype.addBook = function(book){
 	for (var i in book) {
