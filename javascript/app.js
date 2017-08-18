@@ -45,10 +45,10 @@ Library.prototype._handleGetStorage = function() {
 
 Library.prototype._handleGetRandomBook = function() {
 	$(".remove-div").remove();
-	var rando = this.getRandomBook();
-	console.log(rando);
-	for(var i in rando){
-		var div = $("<div>"+rando.toString()+"<div>").addClass("remove-div");
+	var random = this.getRandomBook();
+	console.log(random);
+	for(var i in random){
+		var div = $("<div>"+random[i]+"<div>").addClass("remove-div");
 		$("#well-test").append(div);
 	}
 };
