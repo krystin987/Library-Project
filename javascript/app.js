@@ -13,7 +13,7 @@ Library.prototype.init = function(){
 
 Library.prototype._bindEvents = function() {
 	$("button#add-single-book-btn").on("click", $.proxy(this._handleSingleAdd, this));
-	$("button#add-many-books-btn").on("click", $.proxy(this._handleAddManyBooks, this));
+	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
@@ -66,6 +66,19 @@ Library.prototype._handleAddOneBook = function(oArgs) {
 	newBook.pubDate = $("#single-date-input").val();
 	console.log(newBook);
 	this.addBook(newBook);
+};
+
+Library.prototype._handleAddManyBooks = function(oArgs) {
+	var temp = [];
+	var newBook = new Book(oArgs);
+	for (var i in oArgs) {
+		newBook.title = $("#single-title-input").val();
+		newBook.author = $("#single-author-input").val();
+		newBook.numPages = $("#single-pages-input").val();
+		newBook.pubDate = $("#single-date-input").val();
+		temp.push(newBook);
+	}
+	this.addBooks(temp);
 };
 
 // Library.prototype._handleAddFields = function {
