@@ -7,12 +7,18 @@ var Library = function(instanceKey) {
 Library.prototype.init = function(){
 	this._checkLocalStorage();
 	this._bindEvents();
+	this.setStorage(this.instanceKey);
+	$("button").prop("disabled", true);
+	$(".btn-enabled").prop("disabled", false);
+	$("input").val("");
 	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
 	// call function to populate book array if localStorage has our bookarray value
 };
 
 Library.prototype._bindEvents = function() {
+	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
+	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
@@ -22,15 +28,17 @@ Library.prototype._bindEvents = function() {
 	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
+	$("#remove-by-title-input").keyup(function() {$("#remove-by-title-btn").prop("disabled", false);});
 	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
+	$("#remove-by-author-input").keyup(function() {$("#remove-by-author-btn").prop("disabled", false);});
 
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
+	$("#get-by-title-input").keyup(function() {$("#get-by-title-btn").prop("disabled", false);});
 };
 
 Library.prototype._checkLocalStorage = function() {
 	this.getStorage();
-	// console.log(this.myBookArray);
 };
 
 Library.prototype._handleSetStorage = function() {
@@ -76,6 +84,9 @@ Library.prototype._handleAddOneBook = function(oArgs) {
 	newBook.pubDate = $("#single-date-input").val();
 	this.displayInJumbo(newBook);
 	this.addBook(newBook);
+	this.setStorage(this.instanceKey);
+	$("#single-title-input, #single-author-input, #single-pages-input, #single-date-input").val("");
+	$("#add-single-click-point").prop("disabled", true);
 };
 
 Library.prototype._handleAddManyBooks = function(oArgs) {
@@ -94,14 +105,23 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 
 Library.prototype._handleRemoveBookByTitle = function() {
 	this.removeBookByTitle($("#remove-by-title-input").val());
+	this.setStorage(this.instanceKey);
+	$("#remove-by-title-input").val("");
+	$("#remove-by-title-btn").prop("disabled", true);
 };
 
 Library.prototype._handleRemoveBooksByAuthor = function() {
 	this.removeBooksByAuthor($("#remove-by-author-input").val());
+	this.setStorage(this.instanceKey);
+	$("#remove-by-author-input").val("");
+	$("#remove-by-author-btn").prop("disabled", true);
 };
 
 Library.prototype._handleGetBooksByTitle = function() {
-	console.log(this.getBooksByTitle($("#get-by-title-input").val()));
+	var temp = this.getBooksByTitle($("#get-by-title-input").val());
+	this.displayInWell(temp);
+	$("#get-by-title-input").val("");
+	$("#get-by-title-btn").prop("disabled", true);
 };
 
 Library.prototype._handleGetBooksByAuthor = function() {
