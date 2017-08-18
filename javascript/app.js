@@ -20,20 +20,17 @@ Library.prototype._bindEvents = function() {
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
-
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
-	$("#get-by-title-input").keyup(function() {$("#get-by-title-btn").prop("disabled", false);});
+	$("#get-by-title-input").keyup(function() { if ($("#get-by-title-input").val()) {$("#get-by-title-btn").prop("disabled", false);} else {$("#get-by-title-btn").prop("disabled", true);}});
 	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
-	$("#get-by-author-input").keyup(function() {$("#get-by-author-btn").prop("disabled", false);});
-
+	$("#get-by-author-input").keyup(function() { if ($("#get-by-author-input").val()) {$("#get-by-author-btn").prop("disabled", false);} else {$("#get-by-author-btn").prop("disabled", true);}});
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
-	$("#remove-by-title-input").keyup(function() {$("#remove-by-title-btn").prop("disabled", false);});
+	$("#remove-by-title-input").keyup(function() { if ($("#remove-by-title-input").val()) {$("#remove-by-title-btn").prop("disabled", false);} else {$("#remove-by-title-btn").prop("disabled", true);}});
 	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
-	$("#remove-by-author-input").keyup(function() {$("#remove-by-author-btn").prop("disabled", false);});
-
+	$("#remove-by-author-input").keyup(function() { if ($("#remove-by-author-input").val()) {$("#remove-by-author-btn").prop("disabled", false);} else {$("#remove-by-author-btn").prop("disabled", true);}});
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
 };
@@ -119,10 +116,11 @@ Library.prototype._handleRemoveBooksByAuthor = function() {
 };
 
 Library.prototype._handleGetBooksByTitle = function() {
+
 	var temp = this.getBooksByTitle($("#get-by-title-input").val());
-	this.displayInWell(temp);
-	$("#get-by-title-input").val("");
-	$("#get-by-title-btn").prop("disabled", true);
+	for (var i in temp) {
+		gLibDenver.displayInJumbo(temp[i]);
+	}
 };
 
 Library.prototype._handleGetBooksByAuthor = function() {
