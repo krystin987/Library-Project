@@ -7,10 +7,12 @@ var Library = function(instanceKey) {
 Library.prototype.init = function(){
 	this._checkLocalStorage();
 	this._bindEvents();
+	this._bindEventsToo();
 	this.setStorage(this.instanceKey);
 	$("button").prop("disabled", true);
 	$(".btn-enabled").prop("disabled", false);
 	$("input").val("");
+	this.displayAllBooks();
 	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
 	// call function to populate book array if localStorage has our bookarray value
 };
@@ -48,30 +50,14 @@ Library.prototype._handleGetStorage = function() {
 };
 
 Library.prototype._handleGetRandomBook = function() {
+	$("#display-area").empty();
 	var random = this.getRandomBook();
-	this.displayInJumbo(random);
+	this.bookDisplayCard(random);
 };
 
-Library.prototype.displayInJumbo = function (input) {
-	$(".remove-div").remove();
-	var newDiv = input;
-	for(var i in input){
-		var div = $("<div>"+ input[i] +"<div>").addClass("remove-div");
-		$("#jumbo-display").append(div);
-	}
-};
-
-Library.prototype.displayInWell = function (input) {
-	$(".remove-div").remove();
-	var newDiv = input;
-	var div = $("<div>"+ input +"<div>").addClass("remove-div");
-	$("#well-display").append(div);
-// perhaps suggest books in Jumbo at the same time
-};
 
 Library.prototype._handleGetRandomAuthor = function() {
 	var randomAuthorName = this.getRandomAuthorName();
-	this.displayInWell(randomAuthorName);
 };
 
 Library.prototype._handleAddOneBook = function(oArgs) {
@@ -261,9 +247,11 @@ var Book = function(oArgs) {
 	this.author = oArgs.author;
 	this.numPages = oArgs.numPages;
 	this.pubDate = new Date(oArgs.pubDate);
+	// this.pubDate = this.pubDate.getFullYear();
+	// this.id = Date.now();
 };
 
-$(function(){
+$(function(e){
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
 	// window.gLib = new Library("All");

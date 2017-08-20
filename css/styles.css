@@ -1,26 +1,60 @@
-body {
-  margin: auto;
-}
-#search-drop-down {
-  width: 10%;
+header {
+
+  padding: 78px 0 15px;
 }
 
-.jumbo-section {
-  height: 100%;
+@media (min-width: 992px) {
+  header {
+    padding: 78px 0 15px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hide-search {
+    display: none;
+  }
+}
+
+body {
+  background-image: url('../images/booka.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#book-card {
+  margin-top: 5px;
+  padding: 5px;
+  background-color: #587082;
+}
+
+.card-img {
+  height: 260px;
   width: 100%;
+}
+
+.card-img-overlay {
+  padding: 20% 10% 1% 5%;
+}
+.nav-buttons button {
+  margin: .3em;
+}
+
+.nav-buttons button {
+  background-color: #587082;
+  border-color: #587082;
+}
+
+.bg-primary {
+    background-color: #587082 !important;
+}
+
+.search-bar-pos {
+  margin-left: 26%;
 }
 
 .remove-div {
   text-align: center;
 }
-
-/*.jumbotron {
-  border: 1px solid green;
-}
-
-.well {
-  border: 1px solid blue;
-}*/
 
 .search-bar-container {
   width: 100%;
@@ -41,18 +75,18 @@ body {
   margin-top: -5px;
 }
 
-.form-control {
+/*.form-control {
   padding: 0px 50% 0px 0px;
-}
+}*/
 
 /* nav bar search box - drop down menu button */
-.navbar .navbar-search .dropdown-menu {
+/*.navbar .navbar-search .dropdown-menu {
   min-width: 25px;
 }
 
 .dropdown-menu .label-icon {
   margin-left: 5px;
-}
+}*/
 
 .btn-outline {
     background-color: transparent;
