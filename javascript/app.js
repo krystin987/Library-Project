@@ -18,6 +18,9 @@ Library.prototype.init = function(){
 };
 
 Library.prototype._bindEvents = function() {
+	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
+	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
+	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
 	$("button#show-search-button").on("click", $.proxy(this._handleShowSearch, this));
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
@@ -25,10 +28,7 @@ Library.prototype._bindEvents = function() {
 	$("button#add-book-button").on("click", $.proxy(this._handleAddBookScreen, this));
 	$("button#add-books-button").on("click", $.proxy(this._handleAddManyBooksScreen, this));
 	$("#remove-by-title-option-btn").on("click", $.proxy(this._handleRemoveBookByTitleOption, this));
-
-	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
-	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
 	$("#get-by-title-input").keyup(function() { if ($("#get-by-title-input").val()) {$("#get-by-title-btn").prop("disabled", false);} else {$("#get-by-title-btn").prop("disabled", true);}});
