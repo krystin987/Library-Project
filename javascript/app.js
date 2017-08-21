@@ -24,6 +24,7 @@ Library.prototype._bindEvents = function() {
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#add-book-button").on("click", $.proxy(this._handleAddBookScreen, this));
 	$("#add-single-click-point").on("keyup", function(e){if(e.which==9){ $.proxy(this._handleMoreBooks(), this);}});
+	$("#remove-by-title-option-btn").on("click", $.proxy(this._handleRemoveBookByTitleOption, this));
 
 	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
@@ -108,6 +109,12 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 	this.addBooks(temp);
 };
 
+Library.prototype._handleRemoveBookByTitleOption = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$(".remove-by-title").show();
+};
+
 Library.prototype._handleRemoveBookByTitle = function() {
 	this.removeBookByTitle($("#remove-by-title-input").val());
 	this.setStorage(this.instanceKey);
@@ -123,7 +130,6 @@ Library.prototype._handleRemoveBooksByAuthor = function() {
 };
 
 Library.prototype._handleGetBooksByTitle = function() {
-
 	var temp = this.getBooksByTitle($("#get-by-title-input").val());
 	for (var i in temp) {
 		gLibDenver.displayInJumbo(temp[i]);
@@ -279,6 +285,7 @@ $(function(e){
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
 	$("#add-book-panel").hide();
+	$(".remove-by-title").hide();
 	// $("#show-searc-button").hide();
 	// window.gLib = new Library("All");
 	// window.gLib.init();
