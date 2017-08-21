@@ -19,17 +19,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="nav-buttons navbar-nav ml-auto">
+            <button id="show-search-button" type="button" class="btn btn-primary btn-enabled">Search</button>
             <button id="random-book-btn" type="button" class="btn btn-primary btn-enabled">Try a Random Book</button>
             <button id="all-authors-btn" type="button" class="btn btn-primary btn-enabled">Find all Authors</button>
             <button id="random-author-btn" type="button" class="btn btn-primary btn-enabled">Find a Random Author</button>
+            <button id="add-book-button" type="button" class="btn btn-primary btn-enabled">Add a New Book</button>
+            <button id="add-books-button" type="button" class="btn btn-primary btn-enabled">Add New Books</button>
             <button id="clear-state-button" type="button" class="btn btn-primary btn-enabled">clear state</button>
+
           </ul>
         </div>
       </div>
     </nav>
 
     <header id="main-display" class="bg-primary text-white sticky-top">
-      <div class="container text-center">
+      <div id="search-bar" class="container text-center">
         <div class="row">
           <div class="hide-search col-md-8">
             <div class="input-group search-bar-pos">
@@ -39,11 +43,11 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Contains</a></li>
-                  <!-- <li><a href="#its_equal">It's equal</a></li>
+                  <li><a href="#its_equal">It's equal</a></li>
                   <li><a href="#greather_than">Greather than ></a></li>
                   <li><a href="#less_than">Less than < </a></li>
                   <li class="divider"></li>
-                  <li><a href="#all">Anything</a></li> -->
+                  <li><a href="#all">Anything</a></li>
                 </ul>
               </div>
               <input type="hidden" name="search_param" value="all" id="search_param">
@@ -54,6 +58,27 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div id="add-book-panel"class="form-row single-book-add">
+        <div class="col">
+          <input id="single-title-input" type="text" class="form-control-1" placeholder="Title">
+        </div>
+        <div class="col">
+          <input id="single-author-input" type="text" class="form-control-2" placeholder="Author">
+        </div>
+        <div class="col">
+          <input id="single-pages-input" type="text" class="form-control-3" placeholder="Number of Pages">
+        </div>
+        <div class="col">
+          <input id="single-date-input" type="text" class="form-control-4" placeholder="Published Date">
+        </div>
+        <div class="add-book-btn-div">
+        <button id="add-single-click-point" type="button" class="add-single-book-btn btn btn-primary">Add a Book</button>
+      </div>
+      <div class="add-books-btn-div">
+      <button id="add-many-click-point" type="button" class="add-single-book-btn btn btn-primary">Add Many Books</button>
+      </div>
       </div>
     </header>
 

@@ -18,16 +18,21 @@ Library.prototype.init = function(){
 };
 
 Library.prototype._bindEvents = function() {
+	$("button#show-search-button").on("click", $.proxy(this._handleShowSearch, this));
+	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
+	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
+	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
+	$("button#add-book-button").on("click", $.proxy(this._handleAddBookScreen, this));
+	$("#add-single-click-point").on("keyup", function(e){if(e.which==9){ $.proxy(this._handleMoreBooks(), this);}});
+
 	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
-	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
-	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
-	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
 	$("#get-by-title-input").keyup(function() { if ($("#get-by-title-input").val()) {$("#get-by-title-btn").prop("disabled", false);} else {$("#get-by-title-btn").prop("disabled", true);}});
 	$("button#get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
+	$(".get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 	$("#get-by-author-input").keyup(function() { if ($("#get-by-author-input").val()) {$("#get-by-author-btn").prop("disabled", false);} else {$("#get-by-author-btn").prop("disabled", true);}});
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
 	$("#remove-by-title-input").keyup(function() { if ($("#remove-by-title-input").val()) {$("#remove-by-title-btn").prop("disabled", false);} else {$("#remove-by-title-btn").prop("disabled", true);}});
@@ -39,6 +44,13 @@ Library.prototype._bindEvents = function() {
 
 Library.prototype._checkLocalStorage = function() {
 	this.getStorage();
+};
+
+Library.prototype._handleShowSearch = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$("#search-bar").show();
+	this.displayAllBooks();
 };
 
 Library.prototype._handleSetStorage = function() {
@@ -57,20 +69,29 @@ Library.prototype._handleGetRandomBook = function() {
 
 
 Library.prototype._handleGetRandomAuthor = function() {
+	$("#display-area").empty();
 	var randomAuthorName = this.getRandomAuthorName();
+	this.authorsDisplayCard(randomAuthorName);
+};
+
+Library.prototype._handleAddBookScreen = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$("#add-book-panel").show();
 };
 
 Library.prototype._handleAddOneBook = function(oArgs) {
 	var newBook = new Book(oArgs);
+	$("#display-area").empty();
 	newBook.title = $("#single-title-input").val();
 	newBook.author = $("#single-author-input").val();
 	newBook.numPages = $("#single-pages-input").val();
 	newBook.pubDate = $("#single-date-input").val();
-	this.displayInJumbo(newBook);
 	this.addBook(newBook);
 	this.setStorage(this.instanceKey);
 	$("#single-title-input, #single-author-input, #single-pages-input, #single-date-input").val("");
 	$("#add-single-click-point").prop("disabled", true);
+	this.bookDisplayCard(newBook);
 };
 
 Library.prototype._handleAddManyBooks = function(oArgs) {
@@ -110,14 +131,17 @@ Library.prototype._handleGetBooksByTitle = function() {
 };
 
 Library.prototype._handleGetBooksByAuthor = function() {
-	console.log(this.getBooksByAuthor($("#get-by-author-input").val()));
+	$("#display-area").empty();
+	// console.log(this.getBooksByAuthor($("#get-by-author-input").val()));
 	$("#get-by-author-input").val("");
 	$("#get-by-author-btn").prop("disabled", true);
+	this.displayAllBooks();
 };
 
 Library.prototype._handleGetAuthors = function() {
-	console.log(this.getAuthors());
-	this.displayInJumbo(this.getAuthors());
+	$("#display-area").empty();
+	// console.log(this.getAuthors());
+	this.displayAllAuthors(this.getAuthors());
 };
 
 // foundation functions
@@ -254,6 +278,8 @@ var Book = function(oArgs) {
 $(function(e){
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
+	$("#add-book-panel").hide();
+	// $("#show-searc-button").hide();
 	// window.gLib = new Library("All");
 	// window.gLib.init();
 	// window.gLibBoulder = new Library("Boulder");

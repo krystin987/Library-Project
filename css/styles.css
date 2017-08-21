@@ -21,8 +21,8 @@ body {
   background-attachment: fixed;
 }
 
-#book-card {
-  margin-top: 5px;
+.author-card-class, .book-card-class {
+  margin: 15px 0px 15px 0px;
   padding: 5px;
   background-color: #587082;
 }
@@ -32,8 +32,12 @@ body {
   width: 100%;
 }
 
+.card-img {
+opacity: .85;
+}
+
 .card-img-overlay {
-  padding: 20% 10% 1% 5%;
+  padding: 15% 10% 1% 5%;
 }
 .nav-buttons button {
   margin: .3em;
