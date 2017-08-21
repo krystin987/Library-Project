@@ -55,28 +55,7 @@ Library.prototype._bindEventsToo = function() {
 };
 
 
-Library.prototype._handleMoreBooks = function() {
-	alert("kj");
-	$("#main-display").append(`
-		<div id="add-book-panel"class="form-row single-book-add">
-			<div class="col">
-				<input id="single-title-input" type="text" class="form-control-1" placeholder="Title">
-			</div>
-			<div class="col">
-				<input id="single-author-input" type="text" class="form-control-2" placeholder="Author">
-			</div>
-			<div class="col">
-				<input id="single-pages-input" type="text" class="form-control-3" placeholder="Number of Pages">
-			</div>
-			<div class="col">
-				<input id="single-date-input" type="text" class="form-control-4" placeholder="Published Date">
-			</div>
-			<div class="add-book-btn-div">
-			<button id="add-single-click-point" type="button" class="add-single-book-btn btn btn-primary">Add a Book</button>
-		</div>
-		<div class="add-books-btn-div">
-		<button id="add-many-click-point" type="button" class="add-single-book-btn btn btn-primary">Add Many Books</button>
-		</div>
-		</div>
-		`);
-};
+// Library.prototype._handleMoreBooks = function() {
+// 	// alert("kj");
+//
+// };
