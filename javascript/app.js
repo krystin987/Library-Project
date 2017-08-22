@@ -3,10 +3,11 @@
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
-	this.storageArray = new Array();
+	// this.storageArray = new Array();
 };
 
 Library.prototype.init = function(){
+	// debugger;
 	this._checkLocalStorage();
 	this._bindEvents();
 	this._bindEventsToo();
@@ -134,6 +135,7 @@ Library.prototype.addBooks = function(books) {
 	for (var i in books) {
 		if (this.addBook(books[i])) {
 			count++;
+			this.bookDisplayCard(books[i]);
 		}
 	}
 	// this.bookDisplayCard(books);
@@ -264,8 +266,15 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		newBook.pubDate = $("#many-date-input").val();
 		temp.push(newBook);
 	}
+	for (var j in oArgs) {
+		var newBook = new Book(oArgs);
+		newBook.title = $("#many-title-input1").val();
+		newBook.author = $("#many-author-input1").val();
+		newBook.numPages = $("#many-pages-input1").val();
+		newBook.pubDate = $("#many-date-input1").val();
+		temp.push(newBook);
+	}
 	this.addBooks(temp);
-	this.bookDisplayCard(newBook);
 };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {
@@ -342,7 +351,6 @@ $(function(e){
 	$(".remove-by-author").hide();
 	$(".get-by-title").hide();
 	$(".get-by-author").hide();
-	// $(".get-by-author").hide();
 	// $("#show-searc-button").hide();
 	// window.gLib = new Library("All");
 	// window.gLib.init();
