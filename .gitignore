@@ -4,6 +4,8 @@
 ##	git config --global core.excludesfile ~/.gitignore_global
 ### which will modify your ~/.gitconfig.
 
+node_modules
+
 ~$*
 *.~[0-9]~
 *.bak
