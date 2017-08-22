@@ -1,3 +1,4 @@
+// require("babel-polyfill");
 
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();

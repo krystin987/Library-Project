@@ -1,0 +1,26 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./javascript/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "build": "babel javascript -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krystin987/Library-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krystin987/Library-Project/issues"
+  },
+  "homepage": "https://github.com/krystin987/Library-Project#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
