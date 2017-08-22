@@ -274,7 +274,32 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		newBook.pubDate = $("#many-date-input1").val();
 		temp.push(newBook);
 	}
+	for (var k in oArgs) {
+		var newBook = new Book(oArgs);
+		newBook.title = $("#many-title-input2").val();
+		newBook.author = $("#many-author-input2").val();
+		newBook.numPages = $("#many-pages-input2").val();
+		newBook.pubDate = $("#many-date-input2").val();
+		temp.push(newBook);
+	}
+	for (var l in oArgs) {
+		var newBook = new Book(oArgs);
+		newBook.title = $("#many-title-input3").val();
+		newBook.author = $("#many-author-input3").val();
+		newBook.numPages = $("#many-pages-input3").val();
+		newBook.pubDate = $("#many-date-input3").val();
+		temp.push(newBook);
+	}
+	for (var m in oArgs) {
+		var newBook = new Book(oArgs);
+		newBook.title = $("#many-title-input4").val();
+		newBook.author = $("#many-author-input4").val();
+		newBook.numPages = $("#many-pages-input4").val();
+		newBook.pubDate = $("#many-date-input4").val();
+		temp.push(newBook);
+	}
 	this.addBooks(temp);
+	this.setStorage(this.instanceKey);
 };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {
