@@ -1,3 +1,18 @@
+Library.prototype._bindEventsToo = function() {
+	$("#search-input").on("keyup", function(){
+		$.each($(".book-card-class"), function(index, element){$(element).hide();});
+		for (var i of [".search-title-span", ".search-author-span"]) {
+	  var searchField = $(this).val().toLowerCase();
+	  $.each($(i), function(index, element){
+	    var titleBox = $(this).text().toLowerCase();
+	    var checkInput = (0 <= titleBox.indexOf(searchField));
+	      if (checkInput) {
+	        $(element).parents(".book-card-class").show();
+	      }
+	  });
+		}
+	});
+};
 
 Library.prototype.bookDisplayCard = function(bookCard) {
 	var year = bookCard.pubDate.slice(0, 4);
@@ -26,33 +41,7 @@ Library.prototype.authorsDisplayCard = function(authorCard) {
   `);
 };
 
-Library.prototype.displayAllAuthors = function (){
-	for (var i of this.getAuthors()) {
-		this.authorsDisplayCard(i);
-	}
-};
 
-Library.prototype.displayAllBooks = function (){
-	for (var i in this.myBookArray) {
-		this.bookDisplayCard(this.myBookArray[i]);
-	}
-};
-
-Library.prototype._bindEventsToo = function() {
-	$("#search-input").on("keyup", function(){
-		$.each($(".book-card-class"), function(index, element){$(element).hide();});
-		for (var i of [".search-title-span", ".search-author-span"]) {
-	  var searchField = $(this).val().toLowerCase();
-	  $.each($(i), function(index, element){
-	    var titleBox = $(this).text().toLowerCase();
-	    var checkInput = (0 <= titleBox.indexOf(searchField));
-	      if (checkInput) {
-	        $(element).parents(".book-card-class").show();
-	      }
-	  });
-		}
-	});
-};
 
 
 // Library.prototype._handleMoreBooks = function() {

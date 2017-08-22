@@ -43,14 +43,23 @@ opacity: .85;
 .card-img-overlay {
   padding: 15% 10% 1% 5%;
 }
+
+.nav-buttons {
+  margin: 1px -19px 0px 0px;
+  /*padding: -10px;*/
+}
 .nav-buttons button {
   margin: .3em;
-}
-
-.nav-buttons button {
   background-color: #587082;
   border-color: #587082;
+  font-size: .76em;
 }
+
+.nav-buttons button:hover {
+  background-color: #087082;
+  border-color: #087082;
+}
+
 
 .bg-primary {
     background-color: #587082 !important;
@@ -83,7 +92,7 @@ opacity: .85;
   margin-top: -5px;
 }
 
-.remove-by-title {
+.remove-by-title, .remove-by-author, .get-by-title, .get-by-author{
     margin: auto;
 }
 
