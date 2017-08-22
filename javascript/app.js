@@ -1,13 +1,9 @@
-// require("babel-polyfill");
-
 var Library = function(instanceKey) {
 	this.myBookArray = new Array();
 	this.instanceKey = instanceKey;
-	// this.storageArray = new Array();
 };
 
 Library.prototype.init = function(){
-	// debugger;
 	this._checkLocalStorage();
 	this._bindEvents();
 	this._bindEventsToo();
@@ -16,8 +12,6 @@ Library.prototype.init = function(){
 	$(".btn-enabled").prop("disabled", false);
 	$("input").val("");
 	this.displayAllBooks();
-	// this.$container = $("#myContainer"); if we need to target a parent container cache selectors
-	// call function to populate book array if localStorage has our bookarray value
 };
 
 Library.prototype._bindEvents = function() {
@@ -27,40 +21,48 @@ Library.prototype._bindEvents = function() {
 	$("button#add-book-button").on("click", $.proxy(this._handleAddBookScreen, this));
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 
+	// add books
 	var bookObjInputs = "#many-title-input, #many-author-input, #many-pages-input, #many-date-input";
 	$(bookObjInputs).keyup(function() {var title = $("#many-title-input").val(); var author = $("#many-author-input").val(); var pages = $("#many-pages-input").val(); var date = $("#many-date-input").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
 	$("button#add-books-button").on("click", $.proxy(this._handleAddManyBooksScreen, this));
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
+
 	// show search
 	$("button#show-search-button").on("click", $.proxy(this._handleShowSearch, this));
-	// random & all
+
+	// random & all authors
 	$("button#random-book-btn").on("click", $.proxy(this._handleGetRandomBook, this));
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
-	// remove by
+
+	// remove by author/title
 	$("#remove-by-title-option-btn").on("click", $.proxy(this._handleRemoveBookByTitleOption, this));
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
 	$("#remove-by-title-input").keyup(function() { if ($("#remove-by-title-input").val()) {$("#remove-by-title-btn").prop("disabled", false);} else {$("#remove-by-title-btn").prop("disabled", true);}});
 	$("button#remove-by-author-option-btn").on("click", $.proxy(this._handleRemoveBooksByAuthorOption, this));
 	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
 	$("#remove-by-author-input").keyup(function() { if ($("#remove-by-author-input").val()) {$("#remove-by-author-btn").prop("disabled", false);} else {$("#remove-by-author-btn").prop("disabled", true);}});
-	// get by
+
+	// get by author/title
 	$("button#find-by-title-option-btn").on("click", $.proxy(this._handleGetBooksByTitleOption, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
 	$("#get-by-title-input").keyup(function() { if ($("#get-by-title-input").val()) {$("#get-by-title-btn").prop("disabled", false);} else {$("#get-by-title-btn").prop("disabled", true);}});
 	$("button#find-by-author-option-btn").on("click", $.proxy(this._handleGetBooksByAuthorOption, this));
 	$(".get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 	$("#get-by-author-input").keyup(function() { if ($("#get-by-author-input").val()) {$("#get-by-author-btn").prop("disabled", false);} else {$("#get-by-author-btn").prop("disabled", true);}});
+
 	// test buttons for JSON
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
 	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
 };
 
+// check JSON for string object, pares or returns null
 Library.prototype._checkLocalStorage = function() {
 	this.getStorage();
 };
 
 // foundation functions
+// addbook accepts only single book objects
 Library.prototype.addBook = function(book){
 	for (var i in book) {
 		if (Array.isArray(book)) {
@@ -76,6 +78,7 @@ Library.prototype.addBook = function(book){
 	return true;
 };
 
+// removes books objects that match string input by title
 Library.prototype.removeBookByTitle = function(title) {
 	for (var i in this.myBookArray) {
 		if (this.myBookArray[i].title.toLowerCase().includes(title.toLowerCase())) {
@@ -86,6 +89,7 @@ Library.prototype.removeBookByTitle = function(title) {
 	return false;
 };
 
+// removes book objects that match string input by author
 Library.prototype.removeBooksByAuthor = function(authorName) {
 	// filter it
 	var newBookArray = this.myBookArray.filter(function(book) {
@@ -100,6 +104,7 @@ Library.prototype.removeBooksByAuthor = function(authorName) {
 	return false;
 };
 
+// returns a random book object
 Library.prototype.getRandomBook = function() {
 	if (!this.myBookArray.length) {
 		return null;
@@ -107,6 +112,7 @@ Library.prototype.getRandomBook = function() {
 	return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
 };
 
+// returns book object matching input string
 Library.prototype.getBooksByTitle = function(title) {
 	var results = [];
 	for (var i in this.myBookArray) {
@@ -117,6 +123,7 @@ Library.prototype.getBooksByTitle = function(title) {
 	return results;
 };
 
+// returns book objects matching author input string
 Library.prototype.getBooksByAuthor = function(authorName) {
 	var results = [];;
 	for (var i in this.myBookArray) {
@@ -127,6 +134,7 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 	return results;
 };
 
+// accepts only arrays of book objects
 Library.prototype.addBooks = function(books) {
 	var count = 0;
 	if(!Array.isArray(books)) {
@@ -135,17 +143,19 @@ Library.prototype.addBooks = function(books) {
 	for (var i in books) {
 		if (this.addBook(books[i])) {
 			count++;
-			this.bookDisplayCard(books[i]);
+			// this.bookDisplayCard(books[i]);
 		}
 	}
 	// this.bookDisplayCard(books);
 	return count;
 };
 
+// returns a random author
 Library.prototype.getRandomAuthorName = function() {
 	return this.getRandomBook().author;
 };
 
+// returns all authors, only once each
 Library.prototype.getAuthors = function() {
 	var authors = [];
 	for (var i in this.myBookArray) {
@@ -156,14 +166,16 @@ Library.prototype.getAuthors = function() {
 	});
 	return noDupes;
 };
-// return this.myBookArray.reduce(function(result, book) {
-// 	return result.add(book.author);}, new Set());
 
+// sets storage to current book array
 Library.prototype.setStorage = function(instanceKey) {
 	localStorage.setItem(instanceKey, JSON.stringify(this.myBookArray));
 	return localStorage.Denver;
 };
 
+// attempts to get data from local storage,
+// returns new array w/ test vars upon null value,
+// otherwise returns parsed JSON object as myBookArray
 Library.prototype.getStorage = function(instanceKey) {
 	this.myBookArray = JSON.parse(localStorage.getItem(this.instanceKey));
 	if (this.myBookArray === null) {
@@ -172,6 +184,7 @@ Library.prototype.getStorage = function(instanceKey) {
 	}
 };
 
+// not currently hooked up to this GUI
 Library.prototype.advancedSearch = function(...pairs) {
 	var results = Array.from(this.myBookArray);
 	for ([key, value] of pairs) {
@@ -190,7 +203,9 @@ Library.prototype.displayAllAuthors = function (){
 
 Library.prototype.displayAllBooks = function (){
 	for (var i in this.myBookArray) {
-		this.bookDisplayCard(this.myBookArray[i]);
+		if (this.myBookArray.length) {
+			 this.bookDisplayCard(this.myBookArray[i]);
+		}
 	}
 };
 // newBook = function(arg) {
@@ -265,6 +280,7 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		newBook.numPages = $("#many-pages-input").val();
 		newBook.pubDate = $("#many-date-input").val();
 		temp.push(newBook);
+		// this.bookDisplayCard(newBook);
 	}
 	for (var j in oArgs) {
 		var newBook = new Book(oArgs);
@@ -368,14 +384,14 @@ var Book = function(oArgs) {
 };
 
 $(function(e){
-	window.gLibDenver = new Library("Denver");
-	window.gLibDenver.init();
 	$("#add-book-panel").hide();
 	$(".remove-by-title").hide();
 	$("#add-many-books-panel").hide();
 	$(".remove-by-author").hide();
 	$(".get-by-title").hide();
 	$(".get-by-author").hide();
+	window.gLibDenver = new Library("Denver");
+	window.gLibDenver.init();
 	// $("#show-searc-button").hide();
 	// window.gLib = new Library("All");
 	// window.gLib.init();
