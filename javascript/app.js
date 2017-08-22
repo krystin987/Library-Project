@@ -20,13 +20,15 @@ Library.prototype.init = function(){
 };
 
 Library.prototype._bindEvents = function() {
-	// add books
+	// add book
 	var bookObjInputs = "#single-title-input, #single-author-input, #single-pages-input, #single-date-input";
 	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-single-click-point").prop("disabled", false); } });
-	$(bookObjInputs).keyup(function() {var title = $("#single-title-input").val(); var author = $("#single-author-input").val(); var pages = $("#single-pages-input").val(); var date = $("#single-date-input").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
 	$("button#add-book-button").on("click", $.proxy(this._handleAddBookScreen, this));
-	$("button#add-books-button").on("click", $.proxy(this._handleAddManyBooksScreen, this));
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
+
+	var bookObjInputs = "#many-title-input, #many-author-input, #many-pages-input, #many-date-input";
+	$(bookObjInputs).keyup(function() {var title = $("#many-title-input").val(); var author = $("#many-author-input").val(); var pages = $("#many-pages-input").val(); var date = $("#many-date-input").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
+	$("button#add-books-button").on("click", $.proxy(this._handleAddManyBooksScreen, this));
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 	// show search
 	$("button#show-search-button").on("click", $.proxy(this._handleShowSearch, this));
@@ -134,6 +136,7 @@ Library.prototype.addBooks = function(books) {
 			count++;
 		}
 	}
+	// this.bookDisplayCard(books);
 	return count;
 };
 
@@ -229,13 +232,6 @@ Library.prototype._handleAddBookScreen = function() {
 	$("#add-book-panel").show();
 };
 
-Library.prototype._handleAddManyBooksScreen = function() {
-	$("#display-area").empty();
-	$("#main-display").children().hide();
-	$("#add-many-books-panel").show();
-	$("#add-many-click-point").show();
-};
-
 Library.prototype._handleAddOneBook = function(oArgs) {
 	var newBook = new Book(oArgs);
 	$("#display-area").empty();
@@ -250,18 +246,26 @@ Library.prototype._handleAddOneBook = function(oArgs) {
 	this.bookDisplayCard(newBook);
 };
 
+Library.prototype._handleAddManyBooksScreen = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$("#add-many-books-panel").show();
+	$("#add-many-click-point").show();
+};
+
+
 Library.prototype._handleAddManyBooks = function(oArgs) {
 	var temp = [];
-	var newBook = new Book(oArgs);
 	for (var i in oArgs) {
-		newBook.title = $("#single-title-input").val();
-		newBook.author = $("#single-author-input").val();
-		newBook.numPages = $("#single-pages-input").val();
-		newBook.pubDate = $("#single-date-input").val();
+		var newBook = new Book(oArgs);
+		newBook.title = $("#many-title-input").val();
+		newBook.author = $("#many-author-input").val();
+		newBook.numPages = $("#many-pages-input").val();
+		newBook.pubDate = $("#many-date-input").val();
 		temp.push(newBook);
-		// this.displayInJumbo(newBook);
 	}
 	this.addBooks(temp);
+	this.bookDisplayCard(newBook);
 };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {
