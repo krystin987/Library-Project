@@ -8,10 +8,20 @@ Library.prototype.init = function(){
 	this._bindEvents();
 	this._bindEventsToo();
 	this.setStorage(this.instanceKey);
+	this.displayAllBooks();
+	this.hidePanelsOnLoad();
+};
+
+Library.prototype.hidePanelsOnLoad = function() {
 	$("button").prop("disabled", true);
 	$(".btn-enabled").prop("disabled", false);
 	$("input").val("");
-	this.displayAllBooks();
+	$("#add-book-panel").hide();
+	$(".remove-by-title").hide();
+	$("#add-many-books-panel").hide();
+	$(".remove-by-author").hide();
+	$(".get-by-title").hide();
+	$(".get-by-author").hide();
 };
 
 Library.prototype._bindEvents = function() {
@@ -365,13 +375,6 @@ var Book = function(oArgs) {
 };
 
 $(function(e){
-	// move to init or call in another function
-	$("#add-book-panel").hide();
-	$(".remove-by-title").hide();
-	$("#add-many-books-panel").hide();
-	$(".remove-by-author").hide();
-	$(".get-by-title").hide();
-	$(".get-by-author").hide();
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
 	// $("#show-searc-button").hide();
