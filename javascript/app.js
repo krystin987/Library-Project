@@ -53,7 +53,7 @@ Library.prototype._bindEvents = function() {
 
 	// test buttons for JSON
 	$("button#save-state-btn").on("click", $.proxy(this._handleSetStorage, this));
-	$("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
+	// $("button#clear-state-button").on("click", $.proxy(this._handleGetStorage, this));
 };
 
 // check JSON for string object, pares or returns null
@@ -74,6 +74,7 @@ Library.prototype.addBook = function(book){
 			return false;
 		}
 	}
+	// this.bookDisplayCard(book[i]);
 	this.myBookArray.push(book);
 	return true;
 };
@@ -208,9 +209,6 @@ Library.prototype.displayAllBooks = function (){
 		}
 	}
 };
-// newBook = function(arg) {
-// 	return arg instanceof Book ? arg : new Book(arg);
-// };
 
 Library.prototype._handleShowSearch = function() {
 	$("#display-area").empty();
@@ -223,17 +221,12 @@ Library.prototype._handleSetStorage = function() {
 	this.setStorage(this.instanceKey);
 };
 
-Library.prototype._handleGetStorage = function() {
-	localStorage.clear();
-};
-
 Library.prototype._handleGetRandomBook = function() {
 	$("#display-area").empty();
 	$("#main-display").children().hide();
 	var random = this.getRandomBook();
 	this.bookDisplayCard(random);
 };
-
 
 Library.prototype._handleGetRandomAuthor = function() {
 	$("#display-area").empty();
@@ -280,7 +273,6 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		newBook.numPages = $("#many-pages-input").val();
 		newBook.pubDate = $("#many-date-input").val();
 		temp.push(newBook);
-		// this.bookDisplayCard(newBook);
 	}
 	for (var j in oArgs) {
 		var newBook = new Book(oArgs);
@@ -315,8 +307,16 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		temp.push(newBook);
 	}
 	this.addBooks(temp);
+	for (var i in temp) {
+		this.bookDisplayCard(temp);
+	}
+	$("#add-many-books-panel").hide();
 	this.setStorage(this.instanceKey);
 };
+
+// Library.prototype.displayManyBooks = function (bookCard) {
+// 	this.bookDisplayCard(bookCard);
+// };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {
 	$("#display-area").empty();
