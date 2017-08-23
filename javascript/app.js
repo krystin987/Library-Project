@@ -8,10 +8,20 @@ Library.prototype.init = function(){
 	this._bindEvents();
 	this._bindEventsToo();
 	this.setStorage(this.instanceKey);
+	this.displayAllBooks();
+	this.hidePanelsOnLoad();
+};
+
+Library.prototype.hidePanelsOnLoad = function() {
 	$("button").prop("disabled", true);
 	$(".btn-enabled").prop("disabled", false);
 	$("input").val("");
-	this.displayAllBooks();
+	$("#add-book-panel").hide();
+	$(".remove-by-title").hide();
+	$("#add-many-books-panel").hide();
+	$(".remove-by-author").hide();
+	$(".get-by-title").hide();
+	$(".get-by-author").hide();
 };
 
 Library.prototype._bindEvents = function() {
@@ -35,18 +45,20 @@ Library.prototype._bindEvents = function() {
 	$("button#random-author-btn").on("click", $.proxy(this._handleGetRandomAuthor, this));
 	$("button#all-authors-btn").on("click", $.proxy(this._handleGetAuthors, this));
 
-	// remove by author/title
+	// remove by title
 	$("#remove-by-title-option-btn").on("click", $.proxy(this._handleRemoveBookByTitleOption, this));
 	$("button#remove-by-title-btn").on("click", $.proxy(this._handleRemoveBookByTitle, this));
 	$("#remove-by-title-input").keyup(function() { if ($("#remove-by-title-input").val()) {$("#remove-by-title-btn").prop("disabled", false);} else {$("#remove-by-title-btn").prop("disabled", true);}});
+	// remove by author
 	$("button#remove-by-author-option-btn").on("click", $.proxy(this._handleRemoveBooksByAuthorOption, this));
 	$("button#remove-by-author-btn").on("click", $.proxy(this._handleRemoveBooksByAuthor, this));
 	$("#remove-by-author-input").keyup(function() { if ($("#remove-by-author-input").val()) {$("#remove-by-author-btn").prop("disabled", false);} else {$("#remove-by-author-btn").prop("disabled", true);}});
 
-	// get by author/title
+	// get(find) by title
 	$("button#find-by-title-option-btn").on("click", $.proxy(this._handleGetBooksByTitleOption, this));
 	$("button#get-by-title-btn").on("click", $.proxy(this._handleGetBooksByTitle, this));
 	$("#get-by-title-input").keyup(function() { if ($("#get-by-title-input").val()) {$("#get-by-title-btn").prop("disabled", false);} else {$("#get-by-title-btn").prop("disabled", true);}});
+	// get(find) by author
 	$("button#find-by-author-option-btn").on("click", $.proxy(this._handleGetBooksByAuthorOption, this));
 	$(".get-by-author-btn").on("click", $.proxy(this._handleGetBooksByAuthor, this));
 	$("#get-by-author-input").keyup(function() { if ($("#get-by-author-input").val()) {$("#get-by-author-btn").prop("disabled", false);} else {$("#get-by-author-btn").prop("disabled", true);}});
@@ -181,17 +193,6 @@ Library.prototype.getStorage = function(instanceKey) {
 	}
 };
 
-// not currently hooked up to this GUI
-// Library.prototype.advancedSearch = function(...pairs) {
-// 	var results = Array.from(this.myBookArray);
-// 	for ([key, value] of pairs) {
-// 		results = results.filter(function(book) {
-// 			return book[key].match(new RegExp(value, "i"));
-// 		});
-// 	}
-// 	return results;
-// };
-
 Library.prototype.displayAllAuthors = function (){
 	for (var i of this.getAuthors()) {
 		this.authorsDisplayCard(i);
@@ -303,16 +304,9 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 		temp.push(newBook);
 	}
 	this.addBooks(temp);
-	// for (var i in temp) {
-	// 	this.bookDisplayCard(temp);
-	// }
 	$("#add-many-books-panel").hide();
 	this.setStorage(this.instanceKey);
 };
-
-// Library.prototype.displayManyBooks = function (bookCard) {
-// 	this.bookDisplayCard(bookCard);
-// };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {
 	$("#display-area").empty();
@@ -346,6 +340,7 @@ Library.prototype._handleGetBooksByTitleOption = function() {
 };
 
 Library.prototype._handleGetBooksByTitle = function() {
+	$("#display-area").empty();
 	var temp = this.getBooksByTitle($("#get-by-title-input").val());
 	for (var i in temp) {
 		this.bookDisplayCard(temp[i]);
@@ -359,6 +354,7 @@ Library.prototype._handleGetBooksByAuthorOption = function() {
 };
 
 Library.prototype._handleGetBooksByAuthor = function() {
+	$("#display-area").empty();
 	var temp = this.getBooksByAuthor($("#get-by-author-input").val());
 	for (var i in temp) {
 		this.bookDisplayCard(temp[i]);
@@ -368,7 +364,6 @@ Library.prototype._handleGetBooksByAuthor = function() {
 Library.prototype._handleGetAuthors = function() {
 	$("#display-area").empty();
 	$("#main-display").children().hide();
-	// console.log(this.getAuthors());
 	this.displayAllAuthors(this.getAuthors());
 };
 
@@ -380,13 +375,6 @@ var Book = function(oArgs) {
 };
 
 $(function(e){
-	// move to init or call in another function
-	$("#add-book-panel").hide();
-	$(".remove-by-title").hide();
-	$("#add-many-books-panel").hide();
-	$(".remove-by-author").hide();
-	$(".get-by-title").hide();
-	$(".get-by-author").hide();
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
 	// $("#show-searc-button").hide();
@@ -395,3 +383,14 @@ $(function(e){
 	// window.gLibBoulder = new Library("Boulder");
 	// window.gLibBoulder.init();
 });
+
+// not currently hooked up to this GUI
+// Library.prototype.advancedSearch = function(...pairs) {
+// 	var results = Array.from(this.myBookArray);
+// 	for ([key, value] of pairs) {
+// 		results = results.filter(function(book) {
+// 			return book[key].match(new RegExp(value, "i"));
+// 		});
+// 	}
+// 	return results;
+// };
