@@ -48,6 +48,16 @@ opacity: .85;
   border-color: #087082;
 }
 
+.add-book-btn-div {
+  margin-top: -5px;
+  background-color: #087082;
+  border-color: #087082;
+}
+
+.add-many-books-btn {
+  background-color: #087082;
+  border-color: #087082;
+}
 
 .bg-primary {
     background-color: #587082 !important;
@@ -74,10 +84,6 @@ opacity: .85;
 .single-book-add input{
   padding-right: 20%;
   border: 1px solid black;
-}
-
-.add-book-btn-div {
-  margin-top: -5px;
 }
 
 .remove-by-title, .remove-by-author, .get-by-title, .get-by-author{
