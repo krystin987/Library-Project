@@ -69,6 +69,31 @@ Library.prototype._checkLocalStorage = function() {
 	this.getStorage();
 };
 
+// returns a random book
+Library.prototype.getRandomBook = function() {
+	if (!this.myBookArray.length) {
+		return null;
+	}
+	return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
+};
+
+// returns a random author
+Library.prototype.getRandomAuthorName = function() {
+	return this.getRandomBook().author;
+};
+
+// returns all authors, once each
+Library.prototype.getAuthors = function() {
+	var authors = [];
+	for (var i in this.myBookArray) {
+		authors.push(this.myBookArray[i].author);
+	}
+	var noDupes = authors.filter( function( item, index, inputArray ) {
+		return inputArray.indexOf(item) == index;
+	});
+	return noDupes;
+};
+
 // addbook accepts only single book objects
 Library.prototype.addBook = function(book){
 	for (var i in book) {
@@ -83,6 +108,20 @@ Library.prototype.addBook = function(book){
 	}
 	this.myBookArray.push(book);
 	return true;
+};
+
+// accepts only arrays of book objects
+Library.prototype.addBooks = function(books) {
+	var count = 0;
+	if(!Array.isArray(books)) {
+		return false;
+	}
+	for (var i in books) {
+		if (this.addBook(books[i])) {
+			count++;
+		}
+	}
+	return count;
 };
 
 // removes books objects that match string input by title
@@ -109,14 +148,6 @@ Library.prototype.removeBooksByAuthor = function(authorName) {
 	return false;
 };
 
-// returns a random book
-Library.prototype.getRandomBook = function() {
-	if (!this.myBookArray.length) {
-		return null;
-	}
-	return this.myBookArray[Math.floor(Math.random() * this.myBookArray.length)];
-};
-
 // returns book object matching input string
 Library.prototype.getBooksByTitle = function(title) {
 	var results = [];
@@ -139,37 +170,7 @@ Library.prototype.getBooksByAuthor = function(authorName) {
 	return results;
 };
 
-// accepts only arrays of book objects
-Library.prototype.addBooks = function(books) {
-	var count = 0;
-	if(!Array.isArray(books)) {
-		return false;
-	}
-	for (var i in books) {
-		if (this.addBook(books[i])) {
-			count++;
-		}
-	}
-	return count;
-};
-
-// returns a random author
-Library.prototype.getRandomAuthorName = function() {
-	return this.getRandomBook().author;
-};
-
-// returns all authors, once each
-Library.prototype.getAuthors = function() {
-	var authors = [];
-	for (var i in this.myBookArray) {
-		authors.push(this.myBookArray[i].author);
-	}
-	var noDupes = authors.filter( function( item, index, inputArray ) {
-		return inputArray.indexOf(item) == index;
-	});
-	return noDupes;
-};
-
+// ********** JSON Storage ********
 // sets storage to current book array
 Library.prototype.setStorage = function(instanceKey) {
 	localStorage.setItem(instanceKey, JSON.stringify(this.myBookArray));
@@ -187,6 +188,8 @@ Library.prototype.getStorage = function(instanceKey) {
 	}
 };
 
+// ********* Display functions **********
+
 // populates cards with each author in the library
 Library.prototype.displayAllAuthors = function (){
 	for (var i of this.getAuthors()) {
@@ -203,7 +206,8 @@ Library.prototype.displayAllBooks = function (){
 	}
 };
 
-// *** Handlers***
+// ****************** Handlers *********************
+
 // shows search after other options have been used/selected
 // searches active cards
 Library.prototype._handleShowSearch = function() {
@@ -226,6 +230,14 @@ Library.prototype._handleGetRandomAuthor = function() {
 	var randomAuthorName = this.getRandomAuthorName();
 	this.authorsDisplayCard(randomAuthorName);
 };
+
+
+Library.prototype._handleGetAuthors = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	this.llllAuthors(this.getAuthors());
+};
+
 
 Library.prototype._handleAddBookScreen = function() {
 	$("#display-area").empty();
@@ -255,12 +267,12 @@ Library.prototype._handleAddManyBooksScreen = function() {
 
 Library.prototype._handleAddManyBooks = function(oArgs) {
 	var temp = [];
-	 for (var outer = 0; outer < 3; outer++){
+	 for (var n = 0; n < 3; n++){
 		 var newBook = new Book(oArgs);
-			 newBook.title = $("#many-title-input" + outer).val();
-			 newBook.author = $("#many-author-input" + outer).val();
-			 newBook.numPages = $("#many-pages-input" + outer).val();
-			 newBook.pubDate = $("#many-date-input" + outer).val();
+			 newBook.title = $("#many-title-input" + n).val();
+			 newBook.author = $("#many-author-input" + n).val();
+			 newBook.numPages = $("#many-pages-input" + n).val();
+			 newBook.pubDate = $("#many-date-input" + n).val();
 			 temp.push(newBook);
 			 this.bookDisplayCard(newBook);
 	 }
@@ -321,12 +333,6 @@ Library.prototype._handleGetBooksByAuthor = function() {
 	for (var i in temp) {
 		this.bookDisplayCard(temp[i]);
 	}
-};
-
-Library.prototype._handleGetAuthors = function() {
-	$("#display-area").empty();
-	$("#main-display").children().hide();
-	this.displayAllAuthors(this.getAuthors());
 };
 
 var Book = function(oArgs) {
