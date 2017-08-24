@@ -1,8 +1,7 @@
 "use strict";
 
-// secondary event binder for init function - long winded
-Library.prototype._bindEventsToo = function () {
-	// keyup for live search function, filters for title && author matches only
+Library.prototype._liveSearch = function () {
+	// keyup for live search function, filters for title || author matches only
 	$("#search-input").on("keyup", function () {
 		$.each($(".book-card-class"), function (index, element) {
 			$(element).hide();
@@ -30,18 +29,5 @@ Library.prototype.bookDisplayCard = function (bookCard) {
 
 // displays only authors
 Library.prototype.authorsDisplayCard = function (authorCard) {
-	$("#display-area").append("\n\t\t<div id=\"author-card\" class=\"author-card-class card card-inverse\">\n  \t\t<img class=\"card-img\" src=\"./images/books.jpeg\" alt=\"Card image\">\n  \t\t<div class=\"card-img-overlay\">\n    \t\t<p class=\"card-text\">Author: <span class=\"search-author-span\">" + authorCard + "</span></p>\n\t\t\t\t<a class=\"get-by-author-btn\" href=\"#\">Click for more from this author</a>\n  \t\t</div>\n\t\t</div>\n  ");
+	$("#display-area").append("\n\t\t<div id=\"author-card\" class=\"author-card-class card card-inverse\">\n  \t\t<img class=\"card-img\" src=\"./images/books.jpeg\" alt=\"Card image\">\n  \t\t<div class=\"card-img-overlay\">\n    \t\t<p class=\"card-text\">Author: <span class=\"search-author-span\">" + authorCard + "</span></p>\n  \t\t</div>\n\t\t</div>\n  ");
 };
-
-Library.prototype._handleAddManyBooksScreen = function () {
-	$("#display-area").empty();
-	$("#main-display").children().hide();
-	$("#add-many-books-panel").show();
-	// $("#main-display").prepend($(".cloned-inputs").clone());
-	// $("#main-display").prepend($(".cloned-inputs").clone());
-};
-
-// Library.prototype._handleMoreBooks = function() {
-// 	// alert("kj");
-//
-// };
