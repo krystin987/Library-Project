@@ -346,14 +346,3 @@ $(function(e){
 	window.gLibDenver = new Library("Denver");
 	window.gLibDenver.init();
 });
-
-// not currently hooked up to this GUI
-// Library.prototype.advancedSearch = function(...pairs) {
-// 	var results = Array.from(this.myBookArray);
-// 	for ([key, value] of pairs) {
-// 		results = results.filter(function(book) {
-// 			return book[key].match(new RegExp(value, "i"));
-// 		});
-// 	}
-// 	return results;
-// };
