@@ -76,10 +76,10 @@
           <input id="single-author-input" type="text" class="form-control" placeholder="Author">
         </div>
         <div class="col">
-          <input id="single-pages-input" type="number" class="form-control" placeholder="Number of Pages">
+          <input id="single-pages-input" type="text" class="form-control" placeholder="Number of Pages">
         </div>
         <div class="col">
-          <input id="single-date-input" type="number" class="form-control" placeholder="Published Date">
+          <input id="single-date-input" type="text" class="form-control" placeholder="Published Date">
         </div>
         <div class="add-book-btn-div">
         <button id="add-single-click-point" type="button" class="add-single-book-btn btn btn-primary">Add a Book</button>
@@ -88,24 +88,23 @@
 
       <!-- add many -->
       <div id="add-many-books-panel">
-        <div class="form-row single-book-add">
-    	     <div class="col">
-    	        <input id="many-title-input" type="text" class="form-control" placeholder="Title">
-    	      </div>
-    	     <div class="col">
-               <input id="many-author-input" type="text" class="form-control" placeholder="Author">
-    	        </div>
-           <div class="col">
-             <input id="many-pages-input" type="number" class="form-control" placeholder="Number of Pages">
-    	      </div>
-    	    <div class="col">
-            <input id="many-date-input" type="number" class="form-control" placeholder="Published Date">
-    	    </div>
-        <div class="add-books-btn-div">
-      </div>
-      </div>
-
-      <div class="form-row single-book-add">
+        <form class="form-row single-book-add cloned-inputs">
+          <div class="col">
+            <input id="many-title-input0" type="text" class="form-control inp" placeholder="Title">
+          </div>
+          <div class="col">
+            <input id="many-author-input0" type="text" class="form-control inp" placeholder="Author">
+          </div>
+          <div class="col">
+            <input id="many-pages-input0" type="text" class="form-control inp" placeholder="Number of Pages">
+          </div>
+          <div class="col">
+            <input id="many-date-input0" type="text" class="form-control inp" placeholder="Published Date">
+          </div>
+          <div class="add-books-btn-div">
+          </div>
+        </form>
+    <div class="form-row single-book-add">
         <div class="col">
           <input id="many-title-input1" type="text" class="form-control" placeholder="Title">
         </div>
@@ -113,10 +112,10 @@
           <input id="many-author-input1" type="text" class="form-control" placeholder="Author">
         </div>
         <div class="col">
-          <input id="many-pages-input1" type="number" class="form-control" placeholder="Number of Pages">
+          <input id="many-pages-input1" type="text" class="form-control" placeholder="Number of Pages">
         </div>
         <div class="col">
-          <input id="many-date-input1" type="number" class="form-control" placeholder="Published Date">
+          <input id="many-date-input1" type="text" class="form-control" placeholder="Published Date">
         </div>
         <div class="add-books-btn-div">
         </div>
@@ -129,10 +128,10 @@
           <input id="many-author-input2" type="text" class="form-control" placeholder="Author">
         </div>
         <div class="col">
-          <input id="many-pages-input2" type="number" class="form-control" placeholder="Number of Pages">
+          <input id="many-pages-input2" type="text" class="form-control" placeholder="Number of Pages">
         </div>
         <div class="col">
-          <input id="many-date-input2" type="number" class="form-control" placeholder="Published Date">
+          <input id="many-date-input2" type="text" class="form-control" placeholder="Published Date">
         </div>
         <div class="add-books-btn-div">
         </div>
@@ -145,10 +144,10 @@
           <input id="many-author-input3" type="text" class="form-control" placeholder="Author">
         </div>
         <div class="col">
-          <input id="many-pages-input3" type="number" class="form-control" placeholder="Number of Pages">
+          <input id="many-pages-input3" type="text" class="form-control" placeholder="Number of Pages">
         </div>
         <div class="col">
-          <input id="many-date-input3" type="number" class="form-control" placeholder="Published Date">
+          <input id="many-date-input3" type="text" class="form-control" placeholder="Published Date">
         </div>
         <div class="add-books-btn-div">
     </div>
@@ -162,16 +161,16 @@
         <input id="many-author-input4" type="text" class="form-control" placeholder="Author">
       </div>
       <div class="col">
-        <input id="many-pages-input4" type="number" class="form-control" placeholder="Number of Pages">
+        <input id="many-pages-input4" type="text" class="form-control" placeholder="Number of Pages">
       </div>
       <div class="col">
-        <input id="many-date-input4" type="number" class="form-control" placeholder="Published Date">
+        <input id="many-date-input4" type="text" class="form-control" placeholder="Published Date">
         <div>
         </div>
       </div>
     </div>
     <div>
-      <button id="add-many-click-point" type="button" class="add-many-books-btn btn btn-primary">Add Many Books</button>
+      <button id="add-many-click-point" type="button" class="add-many-books-btn btn btn-primary btn-enabled">Add Many Books</button>
     </div>
   </div>
 
@@ -217,9 +216,9 @@
     <section id="about">
       <div class="container-fluid about">
         <div class="row">
-          <div class="col-md-6 mx-auto" id="display-area">
+          <div id="display-area" class="col-md-6 mx-auto">
+          </div>
         </div>
-      </div>
     </section>
 
     <!-- Footer -->
@@ -230,7 +229,7 @@
     </footer>
 
     <script src="./javascript/jquery-3.2.1.min.js"></script>
-    <script src="./javascript/jquery.js"></script>
+    <!-- <script src="./javascript/jquery.js"></script> -->
     <script src="./javascript/app.js"></script>
     <script src="./javascript/events.js"></script>
     <script src="./javascript/test-vars.js"></script>

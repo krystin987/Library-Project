@@ -35,8 +35,8 @@ Library.prototype._bindEvents = function() {
 	$("button#add-single-click-point").on("click", $.proxy(this._handleAddOneBook, this));
 
 	// add books
-	var bookObjInputs = "#many-title-input, #many-author-input, #many-pages-input, #many-date-input";
-	$(bookObjInputs).keyup(function() {var title = $("#many-title-input").val(); var author = $("#many-author-input").val(); var pages = $("#many-pages-input").val(); var date = $("#many-date-input").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
+	var bookObjInputs = ".inp";
+	$(bookObjInputs).keyup(function() {var title = $(".inp").val(); var author = $(".inp").val(); var pages = $(".inp").val(); var date = $(".inp").val(); if (title && author && pages && date) { $("#add-many-click-point").prop("disabled", false); } });
 	$("button#add-books-button").on("click", $.proxy(this._handleAddManyBooksScreen, this));
 	$("button#add-many-click-point").on("click", $.proxy(this._handleAddManyBooks, this));
 
@@ -253,59 +253,22 @@ Library.prototype._handleAddOneBook = function(oArgs) {
 	this.bookDisplayCard(newBook);
 };
 
-Library.prototype._handleAddManyBooksScreen = function() {
-	$("#display-area").empty();
-	$("#main-display").children().hide();
-	$("#add-many-books-panel").show();
-	$("#add-many-click-point").show();
-};
-
-
 Library.prototype._handleAddManyBooks = function(oArgs) {
 	var temp = [];
-	for (var i in oArgs) {
-		var newBook = new Book(oArgs);
-		newBook.title = $("#many-title-input").val();
-		newBook.author = $("#many-author-input").val();
-		newBook.numPages = $("#many-pages-input").val();
-		newBook.pubDate = $("#many-date-input").val();
-		temp.push(newBook);
-	}
-	for (var j in oArgs) {
-		var newBook = new Book(oArgs);
-		newBook.title = $("#many-title-input1").val();
-		newBook.author = $("#many-author-input1").val();
-		newBook.numPages = $("#many-pages-input1").val();
-		newBook.pubDate = $("#many-date-input1").val();
-		temp.push(newBook);
-	}
-	for (var k in oArgs) {
-		var newBook = new Book(oArgs);
-		newBook.title = $("#many-title-input2").val();
-		newBook.author = $("#many-author-input2").val();
-		newBook.numPages = $("#many-pages-input2").val();
-		newBook.pubDate = $("#many-date-input2").val();
-		temp.push(newBook);
-	}
-	for (var l in oArgs) {
-		var newBook = new Book(oArgs);
-		newBook.title = $("#many-title-input3").val();
-		newBook.author = $("#many-author-input3").val();
-		newBook.numPages = $("#many-pages-input3").val();
-		newBook.pubDate = $("#many-date-input3").val();
-		temp.push(newBook);
-	}
-	for (var m in oArgs) {
-		var newBook = new Book(oArgs);
-		newBook.title = $("#many-title-input4").val();
-		newBook.author = $("#many-author-input4").val();
-		newBook.numPages = $("#many-pages-input4").val();
-		newBook.pubDate = $("#many-date-input4").val();
-		temp.push(newBook);
-	}
+	 for (var outer = 0; outer < 5; outer++){
+		 for (var i in oArgs) {
+			 var newBook = new Book(oArgs);
+			 newBook.title = $("#many-title-input" + outer).val();
+			 newBook.author = $("#many-author-input" + outer).val();
+			 newBook.numPages = $("#many-pages-input" + outer).val();
+			 newBook.pubDate = $("#many-date-input" + outer).val();
+			 temp.push(newBook);
+		 }
+		 this.bookDisplayCard(newBook);
+	 }
 	this.addBooks(temp);
-	$("#add-many-books-panel").hide();
 	this.setStorage(this.instanceKey);
+	$("input").val("");
 };
 
 Library.prototype._handleRemoveBookByTitleOption = function() {

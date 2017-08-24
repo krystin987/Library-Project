@@ -18,12 +18,6 @@ Library.prototype._bindEventsToo = function() {
 
 // displays whole book objects with all properties
 Library.prototype.bookDisplayCard = function(bookCard) {
-	// if (Array.isArray(bookCard)) {
-	// 	var temp = {};
-	// 	for (var i in bookCard) {
-	// 		temp[i] = bookCard[i];
-	// 	}
-	// }
 	var year = bookCard.pubDate.slice(0, 4);
 	$("#display-area").append(`
 		<div id="book-card" class="book-card-class card card-inverse">
@@ -51,8 +45,13 @@ Library.prototype.authorsDisplayCard = function(authorCard) {
   `);
 };
 
-
-
+Library.prototype._handleAddManyBooksScreen = function() {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$("#add-many-books-panel").show();
+	// $("#main-display").prepend($(".cloned-inputs").clone());
+	// $("#main-display").prepend($(".cloned-inputs").clone());
+};
 
 // Library.prototype._handleMoreBooks = function() {
 // 	// alert("kj");
