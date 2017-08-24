@@ -1,6 +1,5 @@
-// secondary event binder for init function - long winded
-Library.prototype._bindEventsToo = function() {
-	// keyup for live search function, filters for title && author matches only
+Library.prototype._liveSearch = function() {
+	// keyup for live search function, filters for title || author matches only
 	$("#search-input").on("keyup", function(){
 		$.each($(".book-card-class"), function(index, element){$(element).hide();});
 		for (var i of [".search-title-span", ".search-author-span"]) {
@@ -18,12 +17,6 @@ Library.prototype._bindEventsToo = function() {
 
 // displays whole book objects with all properties
 Library.prototype.bookDisplayCard = function(bookCard) {
-	// if (Array.isArray(bookCard)) {
-	// 	var temp = {};
-	// 	for (var i in bookCard) {
-	// 		temp[i] = bookCard[i];
-	// 	}
-	// }
 	var year = bookCard.pubDate.slice(0, 4);
 	$("#display-area").append(`
 		<div id="book-card" class="book-card-class card card-inverse">
@@ -45,16 +38,7 @@ Library.prototype.authorsDisplayCard = function(authorCard) {
   		<img class="card-img" src="./images/books.jpeg" alt="Card image">
   		<div class="card-img-overlay">
     		<p class="card-text">Author: <span class="search-author-span">${authorCard}</span></p>
-				<a class="get-by-author-btn" href="#">Click for more from this author</a>
   		</div>
 		</div>
   `);
 };
-
-
-
-
-// Library.prototype._handleMoreBooks = function() {
-// 	// alert("kj");
-//
-// };
