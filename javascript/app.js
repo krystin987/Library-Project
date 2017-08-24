@@ -256,15 +256,13 @@ Library.prototype._handleAddOneBook = function(oArgs) {
 Library.prototype._handleAddManyBooks = function(oArgs) {
 	var temp = [];
 	 for (var outer = 0; outer < 5; outer++){
-		 for (var i in oArgs) {
-			 var newBook = new Book(oArgs);
+		 var newBook = new Book(oArgs);
 			 newBook.title = $("#many-title-input" + outer).val();
 			 newBook.author = $("#many-author-input" + outer).val();
 			 newBook.numPages = $("#many-pages-input" + outer).val();
 			 newBook.pubDate = $("#many-date-input" + outer).val();
 			 temp.push(newBook);
-		 }
-		 this.bookDisplayCard(newBook);
+		 	this.bookDisplayCard(newBook);
 	 }
 	this.addBooks(temp);
 	this.setStorage(this.instanceKey);
