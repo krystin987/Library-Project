@@ -10,7 +10,7 @@
   </head>
 
   <body id="page-top">
-    <!-- Navigation -->
+      <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container-fluid">
         <a class="navbar-brand js-scroll-trigger" href="#">Digital Library</a>
@@ -18,7 +18,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <!-- buttons  -->
+          <!-- nav/interface options buttons  -->
           <ul class="nav-buttons navbar-nav ml-auto">
             <button id="show-search-button" type="button" class="btn btn-primary btn-enabled">Search</button>
             <button id="random-book-btn" type="button" class="btn btn-primary btn-enabled">Try a Random Book</button>
@@ -42,22 +42,10 @@
           <div class="hide-search col-md-8">
             <div class="input-group search-bar-pos">
               <div class="dropdown input-group-btn search-panel">
-                <!-- <button type="button" class="btn btn-default dropdown-toggle btn-enabled" data-toggle="dropdown">
-                  <span id="search_concept">Filter by</span> <span class="caret"></span>
-                </button> -->
-                <!-- <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Contains</a></li>
-                  <li><a href="#its_equal">It's equal</a></li>
-                  <li><a href="#greather_than">Greather than ></a></li>
-                  <li><a href="#less_than">Less than < </a></li>
-                  <li class="divider"></li>
-                  <li><a href="#all">Anything</a></li>
-                </ul> -->
               </div>
               <input type="hidden" name="search_param" value="all" id="search_param">
               <input id="search-input" type="text" class="form-control" name="x" placeholder="Search term...">
               <span class="input-group-btn">
-                <!-- <button class="btn btn-default btn-enabled" type="button"><span class="glyphicon glyphicon-star btn-enabled">&#x1F50E;</span></button> -->
               </span>
             </div>
           </div>
@@ -65,7 +53,6 @@
       </div>
 
         <!-- Add single book -->
-
       <div id="add-book-panel"class="form-row single-book-add">
         <div class="col">
           <input id="single-title-input" type="text" class="form-control" placeholder="Title">
@@ -84,9 +71,9 @@
       </div>
       </div>
 
-      <!-- add many -->
+      <!-- add many books - 3 rows of input fields -->
       <div id="add-many-books-panel">
-        <form class="form-row single-book-add cloned-inputs">
+        <div class="form-row single-book-add">
           <div class="col">
             <input id="many-title-input0" type="text" class="form-control" placeholder="Title">
           </div>
@@ -101,7 +88,7 @@
           </div>
           <div class="add-books-btn-div">
           </div>
-        </form>
+        </div>
 
       <div class="form-row single-book-add">
         <div class="col">
@@ -136,10 +123,11 @@
         <div class="add-books-btn-div">
         </div>
       </div>
-
+          <!-- button for adding multiple books -->
     <div>
       <button id="add-many-click-point" type="button" class="add-many-books-btn btn btn-primary">Add Many Books</button>
     </div>
+
   </div>
 
     <!-- remove by title -->
@@ -161,6 +149,7 @@
         <button id="remove-by-author-btn" type="button" class="remove-by-author-btn btn btn-primary">Remove this author</button>
       </div>
       </div>
+
       <!-- find by title -->
       <div class="form-row get-by-title col-md-5">
         <div class="col">
@@ -171,6 +160,7 @@
       </div>
       </div>
 
+      <!-- find by author -->
       <div class="form-row get-by-author col-md-5">
         <div class="col">
           <input id="get-by-author-input" type="text" class="form-control-1" placeholder="Title">
@@ -181,6 +171,7 @@
       </div>
     </header>
 
+    <!-- book cards display here -->
     <section id="about">
       <div class="container-fluid about">
         <div class="row">
@@ -192,7 +183,7 @@
     <!-- Footer -->
     <footer class="py-1 bg-dark fixed-bottom">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; This Library 2017</p>
       </div>
     </footer>
 
@@ -200,7 +191,6 @@
     <script src="./javascript/app.js"></script>
     <script src="./javascript/events.js"></script>
     <script src="./javascript/test-vars.js"></script>
-
   </body>
 
 </html>

@@ -1,5 +1,5 @@
 Library.prototype._liveSearch = function() {
-	// keyup for live search function, filters for title && author matches only
+	// keyup for live search function, filters for title || author matches only
 	$("#search-input").on("keyup", function(){
 		$.each($(".book-card-class"), function(index, element){$(element).hide();});
 		for (var i of [".search-title-span", ".search-author-span"]) {
@@ -38,7 +38,6 @@ Library.prototype.authorsDisplayCard = function(authorCard) {
   		<img class="card-img" src="./images/books.jpeg" alt="Card image">
   		<div class="card-img-overlay">
     		<p class="card-text">Author: <span class="search-author-span">${authorCard}</span></p>
-				<a class="get-by-author-btn" href="#">Click for more from this author</a>
   		</div>
 		</div>
   `);

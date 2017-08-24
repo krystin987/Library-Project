@@ -89,6 +89,7 @@ Library.prototype.addBook = function(book){
 Library.prototype.removeBookByTitle = function(title) {
 	for (var i in this.myBookArray) {
 		if (this.myBookArray[i].title.toLowerCase().includes(title.toLowerCase())) {
+			this.bookDisplayCard(this.myBookArray[i]);
 			this.myBookArray.splice(i, 1);
 			return true;
 		}
@@ -96,7 +97,7 @@ Library.prototype.removeBookByTitle = function(title) {
 	return false;
 };
 
-// removes book objects that match string input by author
+// removes book objects that match string input by author - no onscreen population
 Library.prototype.removeBooksByAuthor = function(authorName) {
 	var newBookArray = this.myBookArray.filter(function(book) {
 		return !book.author.toLowerCase().includes(authorName.toLowerCase());
@@ -157,7 +158,7 @@ Library.prototype.getRandomAuthorName = function() {
 	return this.getRandomBook().author;
 };
 
-// returns all authors, only once each
+// returns all authors, once each
 Library.prototype.getAuthors = function() {
 	var authors = [];
 	for (var i in this.myBookArray) {
@@ -202,6 +203,7 @@ Library.prototype.displayAllBooks = function (){
 	}
 };
 
+// *** Handlers***
 // shows search after other options have been used/selected
 // searches active cards
 Library.prototype._handleShowSearch = function() {
