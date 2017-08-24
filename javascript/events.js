@@ -1,5 +1,4 @@
-// secondary event binder for init function - long winded
-Library.prototype._bindEventsToo = function() {
+Library.prototype._liveSearch = function() {
 	// keyup for live search function, filters for title && author matches only
 	$("#search-input").on("keyup", function(){
 		$.each($(".book-card-class"), function(index, element){$(element).hide();});
@@ -44,16 +43,3 @@ Library.prototype.authorsDisplayCard = function(authorCard) {
 		</div>
   `);
 };
-
-Library.prototype._handleAddManyBooksScreen = function() {
-	$("#display-area").empty();
-	$("#main-display").children().hide();
-	$("#add-many-books-panel").show();
-	// $("#main-display").prepend($(".cloned-inputs").clone());
-	// $("#main-display").prepend($(".cloned-inputs").clone());
-};
-
-// Library.prototype._handleMoreBooks = function() {
-// 	// alert("kj");
-//
-// };

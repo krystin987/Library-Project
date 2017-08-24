@@ -1,6 +1,8 @@
 "use strict";
 
+// secondary event binder for init function - long winded
 Library.prototype._bindEventsToo = function () {
+	// keyup for live search function, filters for title && author matches only
 	$("#search-input").on("keyup", function () {
 		$.each($(".book-card-class"), function (index, element) {
 			$(element).hide();
@@ -20,13 +22,23 @@ Library.prototype._bindEventsToo = function () {
 	});
 };
 
+// displays whole book objects with all properties
 Library.prototype.bookDisplayCard = function (bookCard) {
 	var year = bookCard.pubDate.slice(0, 4);
 	$("#display-area").append("\n\t\t<div id=\"book-card\" class=\"book-card-class card card-inverse\">\n  \t\t<img class=\"card-img\" src=\"./images/books.jpeg\" alt=\"Card image\">\n  \t\t<div class=\"card-img-overlay\">\n    \t\t<h4 class=\"card-title\">Title: <span class=\"search-title-span\">" + bookCard.title + "</span> </h4>\n    \t\t<p class=\"card-text\">Author: <span class=\"search-author-span\">" + bookCard.author + "</span></p>\n\t\t\t\t<p class=\"card-text\">Number of Pages: <span class=\"search-pages-span\"> " + bookCard.numPages + "</span></p>\n\t\t\t\t<p class=\"card-text\">Published Year: <span class=\"search-date-span\"><time datetime=\"" + bookCard.pubDate + "\">" + year + "</span></time></p>\n  \t\t</div>\n\t\t</div>\n  ");
 };
 
+// displays only authors
 Library.prototype.authorsDisplayCard = function (authorCard) {
 	$("#display-area").append("\n\t\t<div id=\"author-card\" class=\"author-card-class card card-inverse\">\n  \t\t<img class=\"card-img\" src=\"./images/books.jpeg\" alt=\"Card image\">\n  \t\t<div class=\"card-img-overlay\">\n    \t\t<p class=\"card-text\">Author: <span class=\"search-author-span\">" + authorCard + "</span></p>\n\t\t\t\t<a class=\"get-by-author-btn\" href=\"#\">Click for more from this author</a>\n  \t\t</div>\n\t\t</div>\n  ");
+};
+
+Library.prototype._handleAddManyBooksScreen = function () {
+	$("#display-area").empty();
+	$("#main-display").children().hide();
+	$("#add-many-books-panel").show();
+	// $("#main-display").prepend($(".cloned-inputs").clone());
+	// $("#main-display").prepend($(".cloned-inputs").clone());
 };
 
 // Library.prototype._handleMoreBooks = function() {
