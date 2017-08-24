@@ -289,7 +289,7 @@ Library.prototype._handleGetRandomAuthor = function () {
 Library.prototype._handleGetAuthors = function () {
 	$("#display-area").empty();
 	$("#main-display").children().hide();
-	this.llllAuthors(this.getAuthors());
+	this.displayAllAuthors(this.getAuthors());
 };
 
 Library.prototype._handleAddBookScreen = function () {
