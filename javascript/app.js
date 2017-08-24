@@ -262,7 +262,7 @@ Library.prototype._handleAddManyBooks = function(oArgs) {
 			 newBook.numPages = $("#many-pages-input" + outer).val();
 			 newBook.pubDate = $("#many-date-input" + outer).val();
 			 temp.push(newBook);
-		 	this.bookDisplayCard(newBook);
+			 this.bookDisplayCard(newBook);
 	 }
 	this.addBooks(temp);
 	this.setStorage(this.instanceKey);
