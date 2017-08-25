@@ -3,3 +3,5 @@ This is a digital library with front end graphical user interface and local brow
 The Library loads with all available books in the Library displayed on screen. The search is immediately accessible, it will show only books that match the input by title or author. Users may choose from 9 additional options, rendered as buttons in the navigation section of the page. Each button changes display to show the appropriate option.
 
 All methods used should display some feedback, through visual display on the webpage. Removing books from the library based on author name does not provide visual feedback in the current version. Application is not optimized for mobile responsiveness or menu options in the current version.
+
+
